@@ -14,7 +14,7 @@ ruby:
     - described_by = described_by.present? ? described_by + ' ' + error_id : error_id
     = render "components/govuk_error_message", id: error_id, **errorMessage
   .govuk-checkboxes [*(local_assigns[:attributes] || {})
-                     class=local_assigns[:classes] data-module=("checkboxes" if is_conditional)]
+                     class=local_assigns[:classes] data-module=("govuk-checkboxes" if is_conditional)]
     - items.each_with_index do |item, i|
       - id = item[:id] || "#{id_prefix}-#{i}"
       - conditional_id = 'conditional-' + id

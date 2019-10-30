@@ -3,7 +3,7 @@
 /     blob/57442fc51f088b0a5a3c7aaef085abb7f039fe8f/src/components/header/template.njk
 
 - attributes = (local_assigns[:attributes] || {})
-header.govuk-header *attributes class=local_assigns[:classes] role="banner" data-module="header"
+header.govuk-header *attributes class=local_assigns[:classes] role="banner" data-module="govuk-header"
   .govuk-header__container class=(local_assigns[:containerClasses] || "govuk-width-container")
     .govuk-header__logo
       a.govuk-header__link.govuk-header__link--homepage href=(local_assigns[:containerClasses] || "/")
