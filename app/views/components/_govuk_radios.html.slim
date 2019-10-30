@@ -16,7 +16,7 @@ ruby:
     = render "components/govuk_error_message", id: error_id, **errorMessage
   - radios_classes = [local_assigns[:classes]]
   - radios_classes.push "govuk-radios--conditional" if is_conditional
-  .govuk-radios *(local_assigns[:attributes] || {}) class=radios_classes data-module=("radios" if is_conditional)
+  .govuk-radios *(local_assigns[:attributes] || {}) class=radios_classes data-module=("govuk-radios" if is_conditional)
     - items.each_with_index do |item, i|
       - id = item[:id] || "#{id_prefix}-#{i}"
       - conditional_id = 'conditional-' + id

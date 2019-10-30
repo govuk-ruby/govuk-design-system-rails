@@ -2,7 +2,7 @@ ruby:
   id_prefix = local_assigns[:idPrefix]
   attributes = local_assigns[:attributes] || {}
 
-.govuk-tabs *attributes class=local_assigns[:classes] id=local_assigns[:id] data-module="tabs"
+.govuk-tabs *attributes class=local_assigns[:classes] id=local_assigns[:id] data-module="govuk-tabs"
   h2.govuk-tabs__title
     = local_assigns[:title] || "Contents"
   ul.govuk-tabs__list
