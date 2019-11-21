@@ -1,6 +1,5 @@
 module GovukDesignSystem
   module DetailsHelper
-
     # Generates the HTML for the
     # [Details component](https://design-system.service.gov.uk/components/details/)
     # from the GOV.UK Design System.
