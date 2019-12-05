@@ -1,5 +1,5 @@
 module GovukDesignSystem
-  module GovukSummaryListHelper
+  module SummaryListHelper
     # Use the [summary list](https://design-system.service.gov.uk/components/summary-list/)
     # to summarise information, for example, a user’s responses at the end of a form.
     #
