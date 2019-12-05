@@ -1,5 +1,5 @@
 module GovukDesignSystem
-  module GovukBackLinkHelper
+  module BackLinkHelper
 
     # Use the [back link component](https://design-system.service.gov.uk/components/back-link/)
     # to help users go back to the previous page in a multi-page transaction.
