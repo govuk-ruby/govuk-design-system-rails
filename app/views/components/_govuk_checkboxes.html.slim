@@ -1,4 +1,4 @@
-/https://github.com/alphagov/govuk-frontend/blob/master/src/components/checkboxes/template.njk
+/https://github.com/alphagov/govuk-frontend/blob/master/src/govuk/components/checkboxes/template.njk
 ruby:
   id_prefix = (local_assigns[:idPrefix].presence || name).to_s
   described_by = ""
@@ -41,8 +41,8 @@ ruby:
             checked=item[:checked]
             disabled=item[:disabled]
             data-aria-controls=(conditional_id if item[:conditional])
-            aria-describedby="#{described_by if !has_fieldset && described_by.present?}\
-            #{item_hint_id if has_hint}".presence
+            aria-describedby=("#{described_by if !has_fieldset && described_by.present?}\
+            #{item_hint_id if has_hint}".presence)
             *(item[:attributes] || {})]
           - if item[:type] != "hidden"
             = render "components/govuk_label",
