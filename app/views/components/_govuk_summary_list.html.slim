@@ -11,6 +11,5 @@ dl.govuk-summary-list
             a.govuk-link href="#{action[:href]}" class="#{action[:classes]}"
               = action[:text]
               - if action[:visually_hidden_text].present?
-                = " "
-                span.govuk-visually-hidden
+                span.govuk-visually-hidden<
                   = action[:visually_hidden_text]
