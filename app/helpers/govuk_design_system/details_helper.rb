@@ -14,7 +14,7 @@ module GovukDesignSystem
     # rubocop:disable Naming/MethodName, Naming/UncommunicativeMethodParamName, Naming/VariableName
     def govukDetails(summaryText: nil, summaryHtml: nil, text: nil, html: nil, id: nil, open: nil, classes: '', attributes: {})
       attributes.merge!("class" => "govuk-details #{classes}", id: id, "data-module" => "govuk-details")
-      attributes["open" => "open"] if open
+      attributes["open"] = "open" if open
 
       content_tag('details', attributes) do
         summary = content_tag('summary', class: 'govuk-details__summary') do
