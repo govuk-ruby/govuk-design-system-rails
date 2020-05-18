@@ -16,18 +16,29 @@ module GovukDesignSystem
             concat content_tag("dt", (row[:key][:html] || row[:key][:text]), class: "govuk-summary-list__key")
             concat content_tag("dd", (row[:value][:html] || row[:value][:text]), class: "govuk-summary-list__value")
 
-            if !row.fetch(:actions, {}).fetch(:items, []).empty?
+            items = row.fetch(:actions, {}).fetch(:items, [])
+
+            if items.length > 0
 
               actions = content_tag("dd", class: "govuk-summary-list__actions") do
-                row[:actions][:items].each do |item|
-                  link = link_to(item[:href]) do
-                    concat (item[:html] || item[:text])
-                    if item[:visuallyHiddenText]
-                      concat " "
-                      concat content_tag("span", item[:visuallyHiddenText], class: "govuk-visually-hidden")
+
+                if items.length == 0
+                  concat _actionLink(items.first)
+                else
+
+                  list = tag.ul(class: "govuk-summary-list__actions-list") do
+
+                    items.each do |item|
+
+                      list_item = tag.li(class: "govuk-summary-list__actions-list-item") do
+                        concat _actionLink(item)
+                      end
+
+                      concat list_item
                     end
                   end
-                  concat link
+
+                  concat list
                 end
               end
 
@@ -43,5 +54,16 @@ module GovukDesignSystem
         end
       end
     end
+
+    def _actionLink(item)
+      link_to(item[:href]) do
+        concat (item[:html] || item[:text])
+        if item[:visuallyHiddenText]
+          concat " "
+          concat content_tag("span", item[:visuallyHiddenText], class: "govuk-visually-hidden")
+        end
+      end
+    end
+
   end
 end
