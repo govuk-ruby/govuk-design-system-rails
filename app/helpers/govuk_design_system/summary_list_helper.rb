@@ -56,7 +56,7 @@ module GovukDesignSystem
     end
 
     def _actionLink(item)
-      link_to(item[:href]) do
+      link_to(item[:href], class: "govuk-link") do
         concat (item[:html] || item[:text])
         if item[:visuallyHiddenText]
           concat " "
