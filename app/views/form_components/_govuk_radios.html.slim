@@ -14,7 +14,9 @@ ruby:
   end
   if form.object.respond_to?(key)
     # Make item checked based on attribute value
-    item_matching_state = items.find { |item| item[:value].to_s == form.object.send(key).to_s }
+    item_matching_state = items.find do |item|
+      !item[:divider] && item[:value].to_s == form.object.public_send(key).to_s
+    end
     item_matching_state[:checked] = true if item_matching_state
   end
   unless form.object.nil?
