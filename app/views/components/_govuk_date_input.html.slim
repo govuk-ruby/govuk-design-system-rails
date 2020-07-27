@@ -32,7 +32,8 @@ ruby:
                 classes: "govuk-date-input__input #{item[:classes]}",
                 name: local_assigns[:namePrefix] ? "#{local_assigns[:namePrefix]}-#{item[:name]}" : item[:name],
                 value: item[:value],
-                type: "number",
+                type: "text",
+                inputmode: "numeric",
                 autocomplete: item[:autocomplete],
                 pattern: item[:pattern] || "[0-9]*",
                 attributes: item[:attributes]
