@@ -10,9 +10,6 @@ module GovukDesignSystem
 
       idPrefix = ""
 
-      # Do any of the items have conditional HTML associated?
-      isConditional = items.detect { |item| item.dig(:conditional, :html) }
-
       # Capture the HTML so we can optionally nest it in a fieldset
       inner_html = capture do
         html = ""
@@ -45,7 +42,7 @@ module GovukDesignSystem
           )
         end
 
-        html += tag.div attributes do
+        html += tag.div(**attributes) do
           items.each do |item|
             item_html = capture do
               tag.div class: "govuk-checkboxes__item" do
