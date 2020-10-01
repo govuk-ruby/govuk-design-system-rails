@@ -12,7 +12,7 @@ module GovukDesignSystem
       attributes[:tabindex] = "-1"
       attributes[:"data-module"] = "govuk-error-summary"
 
-      tag.div attributes do
+      tag.div(**attributes) do
         tag.h2((titleHtml || titleText), class: "govuk-error-summary__title", id: "error-summary-title") + \
         tag.div(class: "govuk-error-summary__body") do
           description = if descriptionHtml || descriptionText
