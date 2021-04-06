@@ -30,8 +30,9 @@ html.govuk-template.app-html-class[lang="en"]
 
     = yield
 
-    javascript:
-      if (typeof window.GOVUKFrontend === 'undefined') {
+    == javascript_tag nonce: true do
+       |
+         if (typeof window.GOVUKFrontend === 'undefined') {
           document.body.className = document.body.className.replace('js-enabled', '')
-      }
-      window.GOVUKFrontend.initAll()
+         }
+         window.GOVUKFrontend.initAll()
