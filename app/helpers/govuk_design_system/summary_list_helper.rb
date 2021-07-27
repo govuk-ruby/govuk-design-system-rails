@@ -22,7 +22,7 @@ module GovukDesignSystem
 
               actions = content_tag("dd", class: "govuk-summary-list__actions") do
 
-                if items.length == 0
+                if items.length == 1
                   concat _actionLink(items.first)
                 else
 
