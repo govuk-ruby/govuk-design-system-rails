@@ -6,5 +6,5 @@ Gem::Specification.new do |s|
   s.authors     = %w(UKGovernmentBEIS)
   s.summary     = "An implementation of the govuk-frontend macros in Ruby on Rails"
 
-  s.add_runtime_dependency "slim"
+  s.add_runtime_dependency "slim-rails"
 end
