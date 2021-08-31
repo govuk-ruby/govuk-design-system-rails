@@ -2,7 +2,7 @@
 / https://github.com/alphagov/govuk-frontend/
 / blob/b863be549f502a6829a5d261976c3bcb8ebdf4d2/src/components/date-input/template.njk
 ruby:
-  described_by = ""
+  described_by = local_assigns[:described_by].presence || ""
   date_input_items = local_assigns[:items] ||
           [
                   { name: "day", classes: "govuk-input--width-2" },
