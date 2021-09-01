@@ -2,7 +2,7 @@
 / https://github.com/alphagov/govuk-frontend/
 / blob/943ff14752f0a8a765ee3f90bc3e1ecd9205e36c/src/components/textarea/template.njk
 ruby:
-  described_by = ""
+  described_by = local_assigns[:described_by] || ""
   has_error = local_assigns[:errorMessage].present?
   rows = local_assigns[:rows] || 5
 
