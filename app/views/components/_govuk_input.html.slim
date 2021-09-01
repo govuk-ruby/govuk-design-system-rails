@@ -2,7 +2,7 @@
 / https://github.com/alphagov/govuk-frontend/
 / blob/b863be549f502a6829a5d261976c3bcb8ebdf4d2/src/components/input/template.njk
 ruby:
-  described_by = local_assigns[:described_by].presence || ""
+  described_by = local_assigns[:described_by] || ""
   form_group_classes = [local_assigns.dig(:formGroup, :classes)]
   form_group_classes.push "govuk-form-group--error" if local_assigns[:errorMessage]
   input_classes = ["govuk-input", local_assigns[:classes]]

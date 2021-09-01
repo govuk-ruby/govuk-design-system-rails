@@ -3,7 +3,7 @@
 /       blob/943ff14752f0a8a765ee3f90bc3e1ecd9205e36c/src/components/radios/template.njk
 ruby:
   id_prefix = (local_assigns[:idPrefix].presence || name).to_s
-  described_by = local_assigns[:described_by].presence || ""
+  described_by = local_assigns[:described_by] || ""
   is_conditional = items.any? { |item| item[:conditional] }
 - radios_html = capture do
   - if local_assigns[:hint].present?
