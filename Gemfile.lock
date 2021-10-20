@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    govuk-design-system-rails (0.7.8)
+    govuk-design-system-rails (0.8.0)
       slim-rails
 
 GEM

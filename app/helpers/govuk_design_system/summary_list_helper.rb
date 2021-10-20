@@ -13,8 +13,8 @@ module GovukDesignSystem
       content_tag("dl", attributes) do
         rows.each do |row|
           row = content_tag("div", class: "govuk-summary-list__row") do
-            concat content_tag("dt", (row[:key][:html] || row[:key][:text]), class: "govuk-summary-list__key")
-            concat content_tag("dd", (row[:value][:html] || row[:value][:text]), class: "govuk-summary-list__value")
+            concat content_tag("dt", (row[:key][:html] || row[:key][:text]), class: "govuk-summary-list__key #{row[:key][:classes]}")
+            concat content_tag("dd", (row[:value][:html] || row[:value][:text]), class: "govuk-summary-list__value #{row[:value][:classes]}")
 
             items = row.fetch(:actions, {}).fetch(:items, [])
 
