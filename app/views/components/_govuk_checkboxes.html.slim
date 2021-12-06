@@ -27,11 +27,12 @@ ruby:
         - item_hint_id = id + '-item-hint'
         / This adds a hidden checkbox to copy how rails generates checkboxes
         / https://github.com/UKGovernmentBEIS/govuk-design-system-rails/README.md#component-implementations
-        input [
-            type='hidden'
-            value=(item[:unchecked_value] || "0").to_s
-            name=(item[:name] || name)
-            disabled=item[:disabled]]
+        - if !item[:disable_ghost]
+          input [
+              type='hidden'
+              value=(item[:unchecked_value] || "0").to_s
+              name=(item[:name] || name)
+              disabled=item[:disabled]]
         .govuk-checkboxes__item
           input.govuk-checkboxes__input [
             id=id
