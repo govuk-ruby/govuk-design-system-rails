@@ -1,6 +1,5 @@
 module GovukDesignSystem
   module CheckboxesHelper
-
     def govukCheckboxes(items: [], classes: "", formGroup: {}, attributes: {}, describedBy: "", fieldset: {}, hint: nil, errorMessage: nil)
       attributes[:class] = "govuk-checkboxes #{classes}"
 
@@ -16,7 +15,7 @@ module GovukDesignSystem
 
         if hint
 
-          hintId = idPrefix + "-hint"
+          hintId = "#{idPrefix}-hint"
           describedBy += " #{hintId}"
 
           html += govukHint(
@@ -29,7 +28,7 @@ module GovukDesignSystem
         end
 
         if errorMessage
-          errorId = idPrefix + "-error"
+          errorId = "#{idPrefix}-error"
           describedBy += " #{errorId}"
 
           html += govukErrorMessage(

@@ -1,6 +1,5 @@
 module GovukDesignSystem
   module HintHelper
-
     # The hint component is used within other input components.
     #
     # Code based upon [nunjucks template](https://github.com/alphagov/govuk-frontend/blob/master/src/govuk/components/hint/template.njk)
@@ -13,6 +12,5 @@ module GovukDesignSystem
         html || text
       end
     end
-
   end
 end

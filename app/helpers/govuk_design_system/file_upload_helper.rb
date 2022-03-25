@@ -1,11 +1,10 @@
 module GovukDesignSystem
   module FileUploadHelper
-
     # Use the [file upload component](https://design-system.service.gov.uk/components/file-upload/)
     # to help users select and upload a file.
     #
     # Code based upon [nunjucks template](https://github.com/alphagov/govuk-frontend/blob/master/src/govuk/components/file-upload/template.njk)
-    def govukFileUpload(id:, name:, value: nil, label:, hint: nil, errorMessage: nil, formGroup: {}, classes: "", attributes: {}, described_by: nil)
+    def govukFileUpload(id:, name:, label:, value: nil, hint: nil, errorMessage: nil, formGroup: {}, classes: "", attributes: {}, described_by: nil)
       form_group_classes = "govuk-form-group"
       form_group_classes += " govuk-form-group--error" if errorMessage
       form_group_classes += " #{formGroup[:classes]}" if formGroup[:classes]
@@ -15,7 +14,6 @@ module GovukDesignSystem
       described_by ||= ""
 
       content_tag("div", class: form_group_classes) do
-
         concat govukLabel(html: label[:html], text: label[:text], classes: label[:classes], isPageHeading: label[:isPageHeading], attributes: (label[:attributes] || {}), for: id)
 
         if hint

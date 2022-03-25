@@ -18,18 +18,15 @@ module GovukDesignSystem
 
             items = row.fetch(:actions, {}).fetch(:items, [])
 
-            if items.length > 0
+            if items.length.positive?
 
               actions = content_tag("dd", class: "govuk-summary-list__actions") do
-
                 if items.length == 1
                   concat _actionLink(items.first)
                 else
 
                   list = tag.ul(class: "govuk-summary-list__actions-list") do
-
                     items.each do |item|
-
                       list_item = tag.li(class: "govuk-summary-list__actions-list-item") do
                         concat _actionLink(item)
                       end
@@ -57,13 +54,12 @@ module GovukDesignSystem
 
     def _actionLink(item)
       link_to(item[:href], class: "govuk-link #{item[:classes]}") do
-        concat (item[:html] || item[:text])
+        concat(item[:html] || item[:text])
         if item[:visuallyHiddenText]
           concat " "
           concat content_tag("span", item[:visuallyHiddenText], class: "govuk-visually-hidden")
         end
       end
     end
-
   end
 end

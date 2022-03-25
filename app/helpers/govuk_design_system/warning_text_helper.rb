@@ -5,13 +5,13 @@ module GovukDesignSystem
     # or lack of action, that they might take.
     #
     # Implementation based on https://github.com/alphagov/govuk-frontend/tree/master/src/govuk/components/warning-text
-    def govukWarningText(text: nil, html: nil, iconFallbackText:, classes: "", attributes: {})
+    def govukWarningText(iconFallbackText:, text: nil, html: nil, classes: "", attributes: {})
       attributes[:class] = "govuk-warning-text #{classes}"
 
-      content_tag('div', attributes) do
-        content_tag('span', '!', class: 'govuk-warning-text__icon', "aria-hidden" => 'true') +
-          content_tag('strong', class: 'govuk-warning-text__text') do
-            content_tag('span', iconFallbackText, class: 'govuk-warning-text__assistive') +
+      content_tag("div", attributes) do
+        content_tag("span", "!", class: "govuk-warning-text__icon", "aria-hidden" => "true") +
+          content_tag("strong", class: "govuk-warning-text__text") do
+            content_tag("span", iconFallbackText, class: "govuk-warning-text__assistive") +
               (html || text)
           end
       end
