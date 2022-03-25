@@ -19,7 +19,7 @@ jobs:
     - uses: actions/cache@v1
       with:
         path: vendor/bundle
-        key: ${{ runner.os }}-gems-no-dev-${{ hashFiles('**/Gemfile.lock') }}
+        key: ${{ runner.os }}-gems-with-dev-${{ hashFiles('**/Gemfile.lock') }}
         restore-keys: |
           ${{ runner.os }}-gems-
 
@@ -27,10 +27,7 @@ jobs:
       run: |
         gem install bundler --no-doc
         bundle config path vendor/bundle
-        bundle check || bundle install --without development --jobs=4 --retry=3
-
-    - name: Prepare database
-      run: bin/rails parallel:load_schema
+        bundle check || bundle install --jobs=4 --retry=3
 
     - name: Run Specs
       run: |
