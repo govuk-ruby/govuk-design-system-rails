@@ -1,11 +1,56 @@
 inherit_gem:
-  govuk-lint: configs/rubocop/all.yml
+  rubocop-govuk:
+    - config/default.yml
+    - config/rails.yml
 
-require: rubocop-performance
+require:
+  - rubocop-performance
+  - rubocop-rspec
+
+Rails:
+  Enabled: true
 
 AllCops:
   Exclude:
     - 'bin/**/*'
+    - 'coverage/**/*'
+    - 'log/**/*'
+    - 'spec/dummy/**/*'
+    - 'tmp/**/*'
+    - 'vendor/bundle/**/*'
 
-Rails:
-  Enabled: true
+Style/TrailingCommaInArrayLiteral:
+  Enabled: false
+
+Style/TrailingCommaInHashLiteral:
+  Enabled: false
+
+Style/TrailingCommaInArguments:
+  Enabled: false
+
+Rails/HelperInstanceVariable:
+  Enabled: false
+
+Lint/AmbiguousBlockAssociation:
+  Enabled: false
+
+RSpec/NestedGroups:
+  Max: 6
+
+RSpec/ExampleLength:
+  Max: 7
+
+RSpec/MultipleMemoizedHelpers:
+  Enabled: false
+
+Naming/MethodName:
+  Exclude:
+    - 'app/helpers/**/*.rb'
+
+Naming/VariableName:
+  Exclude:
+    - 'app/helpers/**/*.rb'
+
+Naming/MethodParameterName:
+  Exclude:
+    - 'app/helpers/**/*.rb'

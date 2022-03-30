@@ -1,6 +1,5 @@
 module GovukDesignSystem
   module ErrorMessageHelper
-
     # Use the [error message component](https://design-system.service.gov.uk/components/error-message/)
     # when there is a validation error. Explain what went wrong and how to fix it.
     #
@@ -17,9 +16,8 @@ module GovukDesignSystem
           concat content_tag("span", "#{visuallyHiddenText}:", class: "govuk-visually-hidden")
           concat " "
         end
-        concat (html || text)
+        concat(html || text)
       end
     end
-
   end
 end

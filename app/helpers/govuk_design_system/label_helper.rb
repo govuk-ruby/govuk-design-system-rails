@@ -1,11 +1,10 @@
 module GovukDesignSystem
   module LabelHelper
-
     # The label component is used within other input components.
     #
     # Code based upon [nunjucks template](https://github.com/alphagov/govuk-frontend/blob/master/src/govuk/components/label/template.njk)
     def govukLabel(html: nil, text: nil, isPageHeading: false, classes: "", attributes: {}, **opts)
-      raise ArgumentError, 'missing keyword: for' unless opts.has_key?(:for)
+      raise ArgumentError, "missing keyword: for" unless opts.key?(:for)
 
       attributes[:for] = opts[:for]
       attributes[:class] = "govuk-label #{classes}"
@@ -20,6 +19,5 @@ module GovukDesignSystem
         label_html
       end
     end
-
   end
 end
