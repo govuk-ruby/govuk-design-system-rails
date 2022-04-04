@@ -10,6 +10,8 @@ Gem::Specification.new do |s|
 
   s.add_runtime_dependency "slim-rails"
 
+  s.add_development_dependency "compare-xml"
+  s.add_development_dependency "nokogiri"
   s.add_development_dependency "rails", "~> 6.1.4", ">= 6.1.4.6"
   s.add_development_dependency "rspec-rails"
   s.add_development_dependency "rubocop"
@@ -18,4 +20,5 @@ Gem::Specification.new do |s|
   s.add_development_dependency "rubocop-rspec"
   s.add_development_dependency "slim-rails"
   s.add_development_dependency "sqlite3"
+  s.add_development_dependency "super_diff"
 end
