@@ -1,0 +1,12 @@
+<%
+  link_attributes = {
+    class: class_names("govuk-link", local_assigns[:classes]),
+    href: local_assigns[:href]
+  }.merge!(local_assigns[:attributes] || {})
+%>
+<%= tag.a **link_attributes do %>
+  <%= local_assigns[:html].presence || local_assigns[:text] %>
+  <% if local_assigns[:visuallyHiddenText].present? %>
+    <span class="govuk-visually-hidden"> <%= local_assigns[:visuallyHiddenText] %></span>
+  <% end %>
+<% end %>

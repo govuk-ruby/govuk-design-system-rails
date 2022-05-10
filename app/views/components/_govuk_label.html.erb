@@ -1,0 +1,18 @@
+<%
+  if local_assigns[:html].present? || local_assigns[:text].present?
+    label_attributes = {
+      class: class_names("govuk-label", local_assigns[:classes])
+    }.merge!(local_assigns[:attributes] || {})
+    label_attributes[:for] = local_assigns[:for] if local_assigns[:for].present?
+    label_html = capture do
+      tag.label (local_assigns[:html].presence || local_assigns[:text]), **label_attributes
+    end
+  end
+%>
+<% if local_assigns[:isPageHeading] %>
+  <h1 class="govuk-label-wrapper">
+    <%= label_html %>
+  </h1>
+<% else %>
+  <%= label_html %>
+<% end %>

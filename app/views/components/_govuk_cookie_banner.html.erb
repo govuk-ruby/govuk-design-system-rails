@@ -51,7 +51,7 @@
                       class: class_names("govuk-link", action[:classes])
                     }.merge!(action[:attributes] || {})
                   %>
-                  <%= tag.a action[:text], **link_attributes %>
+                  <%= tag.a action[:text], href: action[:href], **link_attributes %>
                 <% end %>
               <% else %>
                 <%= GovukDesignSystem::ButtonHelper.govukButton({
