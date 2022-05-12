@@ -8,7 +8,7 @@ RSpec.describe GovukDesignSystem::CookieBannerHelper, type: :helper do
         messages: [
           {
             headingText: "Cookies on [name of service]",
-            html: <<~HTML,
+            html: <<~HTML.html_safe,
               <p class="govuk-body">We use some essential cookies to make this service work.</p>
               <p class="govuk-body">We’d also like to use analytics cookies so we can understand how you use the service and make improvements.</p>
             HTML
@@ -35,7 +35,7 @@ RSpec.describe GovukDesignSystem::CookieBannerHelper, type: :helper do
       })
 
       expect(html).to match_html(<<~HTML)
-        <div class="govuk-cookie-banner " data-nosnippet role="region" aria-label="Cookies on [name of service]">
+        <div class="govuk-cookie-banner" data-nosnippet="true" role="region" aria-label="Cookies on [name of service]">
           <div class="govuk-cookie-banner__message govuk-width-container">
 
             <div class="govuk-grid-row">
@@ -48,7 +48,6 @@ RSpec.describe GovukDesignSystem::CookieBannerHelper, type: :helper do
                 </div>
               </div>
             </div>
-
             <div class="govuk-button-group">
               <button value="accept" type="button" name="cookies" class="govuk-button" data-module="govuk-button">
                 Accept analytics cookies

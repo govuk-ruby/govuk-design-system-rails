@@ -2,7 +2,10 @@
   div_attributes = {
     class: class_names("govuk-cookie-banner", local_assigns[:classes]),
     "aria-label" => (local_assigns[:ariaLabel].presence || "Cookie banner"),
+    role: "region"
   }.merge!(local_assigns[:attributes] || {})
+  div_attributes[:data] ||= {}
+  div_attributes[:data]["nosnippet"] = true
   div_attributes[:hidden] = "hidden" if local_assigns[:hidden]
 %>
 <% unless cookies[:seen_cookie_message] %>
@@ -38,12 +41,12 @@
             <% (message[:actions] || []).each do |action| %>
               <% if action[:href].present? %>
                 <% if action[:type] == "button" %>
-                  <%= GovukDesignSystem::ButtonHelper.govukButton({
+                  <%= govukButton({
                     "text": action[:text],
                     "type": "button",
-                    "classes": action[:classes],
+                    "classes": action[:classes] || [],
                     "href": action[:href],
-                    "attributes": action[:attributes]
+                    "attributes": action[:attributes] || {}
                   }) %>
                 <% else %>
                   <%
@@ -54,13 +57,13 @@
                   <%= tag.a action[:text], href: action[:href], **link_attributes %>
                 <% end %>
               <% else %>
-                <%= GovukDesignSystem::ButtonHelper.govukButton({
+                <%= govukButton({
                   "text": action[:text],
                   "value": action[:value],
                   "name": action[:name],
                   "type": action[:type],
-                  "classes": action[:classes],
-                  "attributes": action[:attributes]
+                  "classes": action[:classes] || [],
+                  "attributes": action[:attributes] || {}
                 }) %>
               <% end %>
             <% end %>
