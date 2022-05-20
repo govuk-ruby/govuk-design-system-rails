@@ -1,0 +1,75 @@
+<%
+  div_attributes = {
+    class: class_names("govuk-cookie-banner", local_assigns[:classes]),
+    "aria-label" => (local_assigns[:ariaLabel].presence || "Cookie banner"),
+    role: "region"
+  }.merge!(local_assigns[:attributes] || {})
+  div_attributes[:data] ||= {}
+  div_attributes[:data]["nosnippet"] = true
+  div_attributes[:hidden] = "hidden" if local_assigns[:hidden]
+%>
+<% unless cookies[:seen_cookie_message] %>
+  <%= tag.div **div_attributes do %>
+    <% (local_assigns[:messages] || []).each do |message| %>
+      <%
+        message_attributes = {
+          class: class_names("govuk-cookie-banner__message govuk-width-container", message[:classes]),
+        }.merge!(message[:attributes] || {})
+        message_attributes[:hidden] = "hidden" if message[:hidden]
+        message_attributes[:role] = message[:role] if message[:role]
+      %>
+      <%= tag.div **message_attributes do %>
+        <div class="govuk-grid-row">
+          <div class="govuk-grid-column-two-thirds">
+            <% if message[:headingHtml] || message[:headingText] %>
+              <h2 class="govuk-cookie-banner__heading govuk-heading-m">
+                <%= message[:headingHtml] || message[:headingText] %>
+              </h2>
+            <% end %>
+            <div class="govuk-cookie-banner__content">
+              <% if message[:html] %>
+                <%= message[:html] %>
+              <% elsif message[:text] %>
+                <p class="govuk-body"><%= message[:text] %></p>
+              <% end %>
+            </div>
+          </div>
+        </div>
+
+        <% if message[:actions] %>
+          <div class="govuk-button-group">
+            <% (message[:actions] || []).each do |action| %>
+              <% if action[:href].present? %>
+                <% if action[:type] == "button" %>
+                  <%= govukButton({
+                    "text": action[:text],
+                    "type": "button",
+                    "classes": action[:classes] || [],
+                    "href": action[:href],
+                    "attributes": action[:attributes] || {}
+                  }) %>
+                <% else %>
+                  <%
+                    link_attributes = {
+                      class: class_names("govuk-link", action[:classes])
+                    }.merge!(action[:attributes] || {})
+                  %>
+                  <%= tag.a action[:text], href: action[:href], **link_attributes %>
+                <% end %>
+              <% else %>
+                <%= govukButton({
+                  "text": action[:text],
+                  "value": action[:value],
+                  "name": action[:name],
+                  "type": action[:type],
+                  "classes": action[:classes] || [],
+                  "attributes": action[:attributes] || {}
+                }) %>
+              <% end %>
+            <% end %>
+          </div>
+        <% end %>
+      <% end %>
+    <% end %>
+  <% end %>
+<% end %>

@@ -1,0 +1,125 @@
+<%
+  id_prefix = local_assigns[:idPrefix].presence || local_assigns[:name]
+  described_by = local_assigns.dig(:fieldset, :describedBy) || local_assigns[:describedBy]
+  has_fieldset = !local_assigns[:fieldset].nil?
+  inner_html = capture do
+    # NOTE: Start capture
+%>
+
+<% if local_assigns[:hint].present? %>
+  <%
+    hint_id = "#{id_prefix}-hint"
+    described_by = described_by.present? ? "#{described_by} #{hint_id}" : hint_id
+  %>
+  <%= govukHint(
+    id: hint_id,
+    classes: local_assigns.dig(:hint, :classes),
+    attributes: local_assigns.dig(:hint, :attributes) || {},
+    html: local_assigns.dig(:hint, :html),
+    text: local_assigns.dig(:hint, :text)
+  ) %>
+<% end %>
+
+<% if local_assigns[:errorMessage] %>
+  <%
+    error_id = "#{id_prefix}-error"
+    described_by = described_by.present? ? "#{described_by} #{error_id}" : error_id
+  %>
+  <%= govukErrorMessage(
+    id: error_id,
+    classes: local_assigns.dig(:errorMessage, :classes),
+    attributes: local_assigns.dig(:errorMessage, :attributes) || {},
+    html: local_assigns.dig(:errorMessage, :html),
+    text: local_assigns.dig(:errorMessage, :text),
+    visuallyHiddenText: local_assigns.dig(:errorMessage, :visuallyHiddenText)
+  ) %>
+<% end %>
+
+<%
+  div_attributes = {
+    class: class_names("govuk-checkboxes", local_assigns[:classes]),
+    data: { module: "govuk-checkboxes" }
+  }.merge!(local_assigns[:attributes] || {})
+%>
+<%= tag.div **div_attributes do %>
+  <% (local_assigns[:items] || []).each_with_index do |item, index| %>
+    <% if item.present? %>
+      <%
+        item_id = item[:id] || (index.zero? ? id_prefix : "#{id_prefix}-#{index + 1}")
+        name = item[:name].presence || local_assigns[:name]
+        conditional_id = "conditional-#{item_id}"
+      %>
+      <% if item[:divider].present? %>
+        <div class="govuk-checkboxes__divider"><%= item[:divider] %></div>
+      <% else %>
+        <%
+          has_hint = item.dig(:hint, :text).present? || item.dig(:hint, :html).present?
+          item_hint_id = has_hint ? "#{item_id}-item-hint" : ""
+          item_described_by = !has_fieldset ? described_by : ""
+          item_described_by = class_names(item_described_by, item_hint_id)
+        %>
+        <div class="govuk-checkboxes__item">
+          <%
+            input_attributes = {
+                id: item_id,
+                class: "govuk-checkboxes__input",
+                name: name,
+                type: "checkbox",
+                value: item[:value],
+                data: {}
+            }.merge!(item[:attributes] || {})
+            input_attributes[:checked] = true if item[:checked]
+            input_attributes[:disabled] = true if item[:disabled]
+            input_attributes[:data]["aria-controls"] = conditional_id if item.dig(:conditional, :html).present?
+            input_attributes[:data][:behaviour] = item[:behaviour] if item[:behaviour].present?
+            input_attributes["aria-describedby"] = item_described_by if item_described_by.present?
+          %>
+          <%= tag.input **input_attributes %>
+          <%= govukLabel(
+            html: item[:html],
+            text: item[:text],
+            classes: class_names("govuk-checkboxes__label", item.dig(:label, :classes)),
+            attributes: item.dig(:label, :attributes) || {},
+            for: item_id
+          ) %>
+          <% if has_hint %>
+            <%= govukHint(
+              id: item_hint_id,
+              classes: class_names("govuk-checkboxes__hint", item.dig(:hint, :classes)),
+              attributes: item.dig(:hint, :attributes) || {},
+              html: item.dig(:hint, :html),
+              text: item.dig(:hint, :text)
+            ) %>
+          <% end %>
+        </div>
+        <% if item.dig(:conditional, :html).present? %>
+          <div class="<%= class_names("govuk-checkboxes__conditional", { "govuk-checkboxes__conditional--hidden" => !item[:checked] }) %>" id="<%= conditionalId %>">
+            <%= item.dig(:conditional, :html) %>
+          </div>
+        <% end %>
+      <% end %>
+    <% end %>
+  <% end %>
+<% end %>
+
+<%
+    # NOTE: End capture
+  end
+%>
+
+<%
+  form_group_classes = class_names(
+    "govuk-form-group",
+    local_assigns.dig(:formGroup, :classes),
+    { "govuk-form-group--error" => local_assigns[:errorMessage] }
+  )
+%>
+<%= tag.div class: form_group_classes do %>
+  <% if has_fieldset %>
+    <%= render "components/govuk_fieldset", describedBy: described_by.presence, **(local_assigns[:fieldset] || {}) do %>
+      <%= inner_html %>
+    <% end %>
+  <% else %>
+    <%= inner_html %>
+  <% end %>
+<% end %>
