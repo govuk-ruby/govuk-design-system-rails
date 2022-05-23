@@ -61,7 +61,7 @@
       name: local_assigns[:name],
       rows: rows,
       "aria-describedby" => described_by,
-    }.merge!(local_assigns[:attributes].presence || {}).merge!(local_assigns[:autocomplete].presence || {})
+    }.merge!(local_assigns[:attributes] || {}).merge!(local_assigns[:autocomplete] || {})
   %>
 
   <%= tag.textarea(**text_area_attributes) %>
