@@ -4,7 +4,11 @@ module GovukDesignSystem
     # rubocop:disable Lint/UnusedMethodArgument
     # TODO: implement and make use of describedBy
     def govukFieldset(classes: "", describedBy: "", legend: {}, attributes: {}, &block)
-      tag.fieldset class: "govuk-fieldset" do
+      fieldset_attributes = {
+        class: "govuk-fieldset",
+        "aria-describedby" => describedBy
+      }
+      tag.fieldset(**fieldset_attributes) do
         legend = capture do
           tag.legend class: "govuk-fieldset__legend #{legend[:classes]}" do
             if legend[:isPageHeading]
