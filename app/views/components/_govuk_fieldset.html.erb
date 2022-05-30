@@ -1,7 +1,8 @@
 <%
   fieldset_attributes = {
     class: "govuk-fieldset",
-    "aria-describedby" => describedBy
+    "aria-describedby" => describedBy,
+    role: role
   }
 %>
 <%= tag.fieldset(**fieldset_attributes) do %>

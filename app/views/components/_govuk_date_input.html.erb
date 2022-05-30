@@ -1,0 +1,96 @@
+<%
+  described_by = local_assigns[:described_by] || ""
+  date_input_items = local_assigns[:items] ||
+          [
+                  { name: "day", classes: "govuk-input--width-2" },
+                  { name: "month", classes: "govuk-input--width-2" },
+                  { name: "year", classes: "govuk-input--width-4" }
+          ]
+%>
+<% date_input = capture do %>
+<% if local_assigns[:hint] %>
+  <%
+     hint_id = local_assigns[:id] + '-hint'
+     described_by = described_by.present? ? described_by + ' ' + hint_id : hint_id
+  %>
+  <%=
+    govukHint(
+      id: hint_id,
+      text: local_assigns[:hint].try(:[], :text)
+    )
+  %>
+<% end %>
+<% if local_assigns[:errorMessage] %>
+  <%
+    errorId = idPrefix + '-error'
+    described_by = described_by.blank? ? errorId : "#{described_by} #{errorId}"
+    error_attributes  = (local_assigns[:errorMessage][:attributes] || {}).merge(id: errorId)
+  %>
+  <%=
+    govukErrorMessage({
+      id: errorId,
+      classes: local_assigns[:errorMessage][:classes],
+      attributes: error_attributes,
+      html: local_assigns[:errorMessage][:html],
+      text: local_assigns[:errorMessage][:text],
+      visuallyHiddenText: local_assigns[:errorMessage][:visuallyHiddenText]
+    })
+  %>
+<% end %>
+<%
+  input_classes = class_names(
+    "govuk-date-input",
+    local_assigns[:classes]
+  )
+  input_attributes = {
+    class: input_classes,
+    id: local_assigns[:id]
+  }.merge(local_assigns[:attributes] || {})
+%>
+  <%= tag.div(**input_attributes) do %>
+    <% date_input_items.each do |item| %>
+      <div class="govuk-date-input__item">
+        <%
+          input_mode = item[:inputmode] || "numeric"
+          item_id = item[:id] ? item[:id] : local_assigns[:id] + "-" + item[:name]
+          item_classes = class_names("govuk-date-input__input", item[:classes])
+          name = local_assigns[:namePrefix] ? "#{local_assigns[:namePrefix]}-#{item[:name]}" : item[:name]
+        %>
+        <%=
+          govukInput({
+            label: { text: (item[:label] || item[:name]).capitalize, classes: "govuk-date-input__label" },
+            id: item_id,
+            classes: item_classes,
+            name: name,
+            value: local_assigns[:value],
+            type: "text",
+            inputmode: input_mode,
+            autocomplete: local_assigns[:autocomplete],
+            pattern: local_assigns[:pattern],
+            attributes: local_assigns[:attributes]
+          })
+        %>
+      </div>
+    <% end %>
+  <% end %>
+<% end %>
+
+
+<%
+form_group_classes = class_names(
+"govuk-form-group",
+"govuk-form-group--error" => local_assigns[:errorMessage])
+%>
+<%= tag.div(class: form_group_classes) do %>
+  <% if local_assigns[:fieldset] %>
+    <%= govukFieldset({
+    describedBy: described_by,
+    classes: local_assigns[:fieldset].try(:[], :classes),
+    role: 'group',
+    attributes: local_assigns[:fieldset].try(:[], :attributes),
+    legend: local_assigns[:fieldset].try(:[], :legend)
+  }) { date_input } %>
+  <% else %>
+    <%= date_input %>
+  <% end %>
+<% end %>
