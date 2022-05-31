@@ -17,16 +17,16 @@ RSpec.describe GovukDesignSystem::TextAreaHelper, type: :helper do
       })
 
       expect(html).to match_html(<<~HTML)
-      <div class="govuk-form-group">
-        <h1 class="govuk-label-wrapper"><label class="govuk-label govuk-label--l" for="more-detail">
-          Can you provide more detail?
-          </label>
-        </h1>
-        <div id="more-detail-hint" class="govuk-hint">
-          Do not include personal or financial information, like your National Insurance number or credit card details.
+        <div class="govuk-form-group">
+          <h1 class="govuk-label-wrapper"><label class="govuk-label govuk-label--l" for="more-detail">
+            Can you provide more detail?
+            </label>
+          </h1>
+          <div id="more-detail-hint" class="govuk-hint">
+            Do not include personal or financial information, like your National Insurance number or credit card details.
+          </div>
+          <textarea class="govuk-textarea" id="more-detail" name="more-detail" rows="5" aria-describedby="more-detail-hint"></textarea>
         </div>
-        <textarea class="govuk-textarea" id="more-detail" name="more-detail" rows="5" aria-describedby="more-detail-hint"></textarea>
-      </div>
       HTML
     end
 
@@ -48,19 +48,19 @@ RSpec.describe GovukDesignSystem::TextAreaHelper, type: :helper do
       })
 
       expect(html).to match_html(<<~HTML)
-      <div class="govuk-form-group govuk-form-group--error">
-        <h1 class="govuk-label-wrapper"><label class="govuk-label govuk-label--l" for="more-detail">
-            Can you provide more detail?
-          </label>
-        </h1>
-        <div id="more-detail-hint" class="govuk-hint">
-          Do not include personal or financial information, like your National Insurance number or credit card details.
+        <div class="govuk-form-group govuk-form-group--error">
+          <h1 class="govuk-label-wrapper"><label class="govuk-label govuk-label--l" for="more-detail">
+              Can you provide more detail?
+            </label>
+          </h1>
+          <div id="more-detail-hint" class="govuk-hint">
+            Do not include personal or financial information, like your National Insurance number or credit card details.
+          </div>
+          <p id="more-detail-error" class="govuk-error-message">
+            <span class="govuk-visually-hidden">Error:</span> Enter more detail
+          </p>
+          <textarea class="govuk-textarea govuk-textarea--error" id="more-detail" name="more-detail" rows="5" aria-describedby="more-detail-hint more-detail-error"></textarea>
         </div>
-        <p id="more-detail-error" class="govuk-error-message">
-          <span class="govuk-visually-hidden">Error:</span> Enter more detail
-        </p>
-        <textarea class="govuk-textarea govuk-textarea--error" id="more-detail" name="more-detail" rows="5" aria-describedby="more-detail-hint more-detail-error"></textarea>
-      </div>
       HTML
     end
   end
