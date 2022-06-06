@@ -31,7 +31,7 @@
   %>
   <% if local_assigns[:errorMessage] %>
     <%
-      errorId = idPrefix + '-error'
+      errorId = id_prefix + '-error'
       described_by = described_by.blank? ? errorId : "#{described_by} #{errorId}"
       error_attributes  = (local_assigns[:errorMessage][:attributes] || {}).merge(id: errorId)
     %>
