@@ -59,6 +59,7 @@
       class: text_area_class,
       id: local_assigns[:id],
       name: local_assigns[:name],
+      key: local_assigns[:key],
       rows: rows,
       "aria-describedby" => described_by,
     }.merge!(local_assigns[:attributes] || {}).merge!(local_assigns[:autocomplete] || {})

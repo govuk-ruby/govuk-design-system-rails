@@ -66,7 +66,7 @@
         { 'govuk-input--error' => local_assigns[:errorMessage] }
       ),
       id: local_assigns[:id],
-      name: local_assigns[:name],
+      name: local_assigns[:key],
       type: local_assigns[:type] || "text"
     }
     input_attributes[:spellcheck] = local_assigns[:spellcheck] if !local_assigns[:spellcheck].nil?
