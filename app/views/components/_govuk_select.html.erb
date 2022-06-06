@@ -15,8 +15,10 @@
     class: select_classes,
     id: local_assigns[:id],
     name: local_assigns[:name],
-  }.merge!(local_assigns[:attributes] || {})
-   .merge!(local_assigns[:is_autocomplete] || {})
+  }
+
+  select_attributes.merge!({ attributes: local_assigns[:attributes] }) if local_assigns[:attributes]
+  select_attributes.merge!({ is_autocomplete: local_assigns[:is_autocomplete] }) if local_assigns[:is_autocomplete]
 
    select = capture do
 %>
