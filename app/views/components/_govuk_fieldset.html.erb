@@ -1,9 +1,10 @@
 <%
   fieldset_attributes = {
     class: "govuk-fieldset",
-    "aria-describedby" => describedBy,
-    role: role
   }
+
+  fieldset_attributes.merge!(role: local_assigns[:role]) if local_assigns[:role]
+  fieldset_attributes.merge!("aria-describedby" => local_assigns[:describedBy]) if local_assigns[:describedBy]
 %>
 <%= tag.fieldset(**fieldset_attributes) do %>
   <% legend = capture do %>
