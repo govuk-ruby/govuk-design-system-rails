@@ -116,9 +116,7 @@
 %>
 <%= tag.div class: form_group_classes do %>
   <% if has_fieldset %>
-    <%= render "components/govuk_fieldset", describedBy: described_by.presence, **(local_assigns[:fieldset] || {}) do %>
-      <%= inner_html %>
-    <% end %>
+    <%= govukFieldset(classes: "", describedBy: described_by.presence, legend: local_assigns[:fieldset][:legend], attributes: local_assigns[:fieldset]) { inner_html } %>
   <% else %>
     <%= inner_html %>
   <% end %>

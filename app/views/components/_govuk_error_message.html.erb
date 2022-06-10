@@ -3,6 +3,7 @@
     class: class_names("govuk-error-message", local_assigns[:classes])
   }.merge!(local_assigns[:attributes] || {})
 %>
+
 <%= tag.p(**attributes) do %>
   <span class="govuk-visually-hidden"><%= local_assigns[:visuallyHiddenText].presence || "Error" %>:</span>
   <%= local_assigns[:html].presence || local_assigns[:text] %>

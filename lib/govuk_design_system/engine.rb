@@ -27,6 +27,13 @@ module GovukDesignSystem
         ActionView::Base.include GovukDesignSystem::TabsHelper
         ActionView::Base.include GovukDesignSystem::TagHelper
         ActionView::Base.include GovukDesignSystem::WarningTextHelper
+        ActionView::Base.include GovukDesignSystem::DateInputHelper
+        ActionView::Base.include GovukDesignSystem::FieldsetHelper
+        ActionView::Base.include GovukDesignSystem::HeaderHelper
+        ActionView::Base.include GovukDesignSystem::HmctsBannerHelper
+        ActionView::Base.include GovukDesignSystem::RadiosHelper
+        ActionView::Base.include GovukDesignSystem::SelectHelper
+        ActionView::Base.include GovukDesignSystem::TextAreaHelper
       end
     end
 
