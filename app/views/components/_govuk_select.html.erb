@@ -53,13 +53,13 @@
 
     <% if local_assigns[:errorMessage] %>
       <%
-        errorId = idPrefix + '-error'
-        described_by = described_by.blank? ? errorId : "#{described_by} #{errorId}"
-        error_attributes  = (local_assigns[:errorMessage][:attributes] || {}).merge(id: errorId)
+        error_id = local_assigns.try([], :name) + '-error'
+        described_by = described_by.blank? ? error_id : "#{described_by} #{error_id}"
+        error_attributes  = (local_assigns[:errorMessage][:attributes] || {}).merge(id: error_id)
       %>
       <%=
         govukErrorMessage({
-          id: errorId,
+          id: error_id,
           classes: local_assigns[:errorMessage][:classes],
           attributes: error_attributes,
           html: local_assigns[:errorMessage][:html],

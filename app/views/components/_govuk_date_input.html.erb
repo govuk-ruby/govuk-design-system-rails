@@ -23,7 +23,7 @@
 <% if local_assigns[:errorMessage] %>
   <%
     error_id = local_assigns[:id] + '-error'
-    described_by = described_by.blank? ? error_id : "#{described_by} #{errorId}"
+    described_by = described_by.blank? ? error_id : "#{described_by} #{error_id}"
     error_attributes  = (local_assigns[:errorMessage][:attributes] || {}).merge(id: error_id)
   %>
   <%=
