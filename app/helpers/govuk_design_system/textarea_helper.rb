@@ -1,7 +1,7 @@
 module GovukDesignSystem
-  module TextAreaHelper
+  module TextareaHelper
     def govukTextarea(kwargs = {})
-      render "components/govuk_text_area", **kwargs
+      render "components/govuk_textarea", **kwargs
     end
   end
 end

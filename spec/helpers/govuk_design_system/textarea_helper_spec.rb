@@ -1,6 +1,6 @@
 require "rails_helper"
 
-RSpec.describe GovukDesignSystem::TextAreaHelper, type: :helper do
+RSpec.describe GovukDesignSystem::TextareaHelper, type: :helper do
   describe "#govukTextarea" do
     it "when hint is included returns the correct HTML" do
       html = helper.govukTextarea({
