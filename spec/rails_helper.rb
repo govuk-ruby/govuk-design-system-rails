@@ -6,6 +6,8 @@ require_relative "dummy/config/environment"
 abort("The Rails environment is running in production mode!") if Rails.env.production?
 require "rspec/rails"
 # Add additional requires below this line. Rails is not loaded until this point!
+
+# TODO: Remove slim as a dependency once all views converted to ERB.
 require "slim-rails"
 
 # Requires supporting ruby files with custom matchers and macros, etc, in
