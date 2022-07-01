@@ -22,6 +22,7 @@ module GovukDesignSystem
         ActionView::Base.include GovukDesignSystem::FileUploadHelper
         ActionView::Base.include GovukDesignSystem::HeaderHelper
         ActionView::Base.include GovukDesignSystem::HintHelper
+        ActionView::Base.include GovukDesignSystem::HmctsBadgeHelper
         ActionView::Base.include GovukDesignSystem::HmctsBannerHelper
         ActionView::Base.include GovukDesignSystem::InputHelper
         ActionView::Base.include GovukDesignSystem::LabelHelper
