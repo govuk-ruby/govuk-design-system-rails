@@ -1,7 +1,4 @@
-/ This partial acts as glue between rails form helpers and the component date_input
-/ With access to the form object, we can infer a lot of information from it
-
-ruby:
+<%
   # Infer name and id_prefix from attribute key
   local_assigns[:id] ||= get_attribute_id_prefix(form, key)
   errors = form.object.errors
@@ -31,5 +28,5 @@ ruby:
   ]
   error_text = errors.full_messages_for(key).first.presence
   local_assigns[:errorMessage] ||= { text: error_text } if error_text
-
-= render "components/govuk_date_input", **local_assigns
+%>
+<%= render "components/govuk_date_input", **local_assigns %>

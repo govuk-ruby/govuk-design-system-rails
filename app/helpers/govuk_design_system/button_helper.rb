@@ -8,7 +8,7 @@ module GovukDesignSystem
       attributes[:data][:module] ||= "govuk-button"
 
       # Element should be lower-case if set
-      element.downcase! if element
+      element&.downcase!
 
       # Determine type of element to use, if not explicitly set
       element ||= (href ? "a" : "button")
@@ -48,26 +48,23 @@ module GovukDesignSystem
         end
 
       when "button"
-
         attributes[:value] = value if value
         attributes[:type] = type if type
 
         attributes.merge!(button_attributes)
 
-        tag.button attributes do
+        tag.button(**attributes) do
           concat(html || text)
           concat iconHtml.to_s
         end
 
       when "input"
-
         attributes[:value] = text
         attributes[:type] = type || "submit"
 
         attributes.merge!(button_attributes)
 
         content_tag "input", attributes
-
       end
     end
   end

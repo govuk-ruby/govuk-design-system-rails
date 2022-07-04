@@ -8,9 +8,6 @@ Gem::Specification.new do |s|
   s.test_files  = Dir["spec/**/*"]
   s.required_ruby_version = ">= 2.7.0"
 
-  # TODO: Remove slim as a dependency once all views converted to ERB.
-  s.add_runtime_dependency "slim-rails"
-
   s.add_development_dependency "compare-xml"
   s.add_development_dependency "nokogiri"
   s.add_development_dependency "rails", "~> 6.1.4", ">= 6.1.4.6"
@@ -19,8 +16,6 @@ Gem::Specification.new do |s|
   s.add_development_dependency "rubocop-govuk"
   s.add_development_dependency "rubocop-performance"
   s.add_development_dependency "rubocop-rspec"
-  # TODO: Remove slim as a dependency once all views converted to ERB.
-  s.add_development_dependency "slim-rails"
   s.add_development_dependency "sqlite3"
   s.add_development_dependency "super_diff"
 end
