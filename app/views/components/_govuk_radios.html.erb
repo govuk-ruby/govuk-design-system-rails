@@ -58,7 +58,7 @@
         conditional_id = 'conditional-' + id
       %>
       <% if item[:divider] %>
-        <div class="govuk-radios__divider"><%= item.divider %></div>
+        <div class="govuk-radios__divider"><%= item[:divider] %></div>
       <% else %>
         <%
           has_hint = item[:hint] && (item[:hint][:text] || item[:hint][:html])
