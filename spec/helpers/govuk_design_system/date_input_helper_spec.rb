@@ -35,7 +35,7 @@ RSpec.describe GovukDesignSystem::DateInputHelper, type: :helper do
                   <label class="govuk-label govuk-date-input__label" for="passport-issued-day">
                     Day
                   </label>
-                  <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="passport-issued-day" name="passport-issued-day" type="text" inputmode="numeric">
+                  <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="passport-issued-day" name="passport-issued-day" type="text" inputmode="numeric" pattern="[0-9]*">
                 </div>
               </div>
               <div class="govuk-date-input__item">
@@ -43,7 +43,7 @@ RSpec.describe GovukDesignSystem::DateInputHelper, type: :helper do
                   <label class="govuk-label govuk-date-input__label" for="passport-issued-month">
                     Month
                   </label>
-                  <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="passport-issued-month" name="passport-issued-month" type="text" inputmode="numeric">
+                  <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="passport-issued-month" name="passport-issued-month" type="text" inputmode="numeric" pattern="[0-9]*">
                 </div>
               </div>
               <div class="govuk-date-input__item">
@@ -51,7 +51,7 @@ RSpec.describe GovukDesignSystem::DateInputHelper, type: :helper do
                   <label class="govuk-label govuk-date-input__label" for="passport-issued-year">
                     Year
                   </label>
-                  <input class="govuk-input govuk-date-input__input govuk-input--width-4" id="passport-issued-year" name="passport-issued-year" type="text" inputmode="numeric">
+                  <input class="govuk-input govuk-date-input__input govuk-input--width-4" id="passport-issued-year" name="passport-issued-year" type="text" inputmode="numeric" pattern="[0-9]*">
                 </div>
               </div>
             </div>
