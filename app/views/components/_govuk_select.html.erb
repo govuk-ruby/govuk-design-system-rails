@@ -2,13 +2,13 @@
   described_by = local_assigns[:described_by] || ""
   form_group_classes = class_names(
     "govuk-form-group",
-    local_assigns[:formGroup].try([], :classes),
-    "govuk-form-group--error" => local_assigns[:errorMessage]
+    local_assigns[:formGroup].try(:[], :classes),
+    "govuk-form-group--error" => local_assigns[:errorMessage].present?
   )
   select_classes = class_names(
     "govuk-select",
     local_assigns[:classes],
-    "govuk-select--error" => local_assigns[:errorMessage]
+    "govuk-select--error" => local_assigns[:errorMessage].present?
   )
 
   select_attributes = {
@@ -20,7 +20,7 @@
   select_attributes.merge!({ attributes: local_assigns[:attributes] }) if local_assigns[:attributes]
   select_attributes.merge!({ is_autocomplete: local_assigns[:is_autocomplete] }) if local_assigns[:is_autocomplete]
 
-   select = capture do
+  select = capture do
 %>
 
   <%= tag.div(class: form_group_classes) do %>
@@ -35,7 +35,7 @@
 
     <% if local_assigns[:hint] %>
       <%
-        hint_id = local_assigns.try([], :name) + '-hint'
+        hint_id = local_assigns.try(:[], :name) + '-hint'
         described_by = described_by.present? ? described_by + ' ' + hint_id : hint_id
         hint_classes = class_names(
           "govuk-hint",
@@ -53,7 +53,7 @@
 
     <% if local_assigns[:errorMessage] %>
       <%
-        error_id = local_assigns.try([], :name) + '-error'
+        error_id = local_assigns.try(:[], :name) + '-error'
         described_by = described_by.blank? ? error_id : "#{described_by} #{error_id}"
         error_attributes  = (local_assigns[:errorMessage][:attributes] || {}).merge(id: error_id)
       %>
@@ -87,8 +87,8 @@
   <% end %>
 
 <%
-# end capture
-end
+  # end capture
+  end
 %>
 
 <% if local_assigns[:is_autocomplete] %>

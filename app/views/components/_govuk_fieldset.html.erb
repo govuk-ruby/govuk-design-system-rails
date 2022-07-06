@@ -7,18 +7,16 @@
   fieldset_attributes.merge!("aria-describedby" => local_assigns[:describedBy]) if local_assigns[:describedBy]
 %>
 <%= tag.fieldset(**fieldset_attributes) do %>
-  <% legend = capture do %>
-    <%= tag.legend class: "govuk-fieldset__legend #{legend[:classes]}" do %>
-      <% if legend[:isPageHeading] %>
+  <% if local_assigns[:legend].present? %>
+    <%= tag.legend class: "govuk-fieldset__legend #{local_assigns[:legend][:classes]}" do %>
+      <% if local_assigns[:legend][:isPageHeading] %>
         <%= tag.h1 class: "govuk-fieldset__heading" do %>
-          <%= legend[:html].presence || legend[:text] %>
+          <%= local_assigns[:legend][:html].presence || local_assigns[:legend][:text] %>
         <% end %>
       <% else %>
-        <%= legend[:html].presence || legend[:text] %>
+        <%= local_assigns[:legend][:html].presence || local_assigns[:legend][:text] %>
       <% end %>
     <% end %>
   <% end %>
-  <% content = capture(&block)%>
-
-  <% legend + content %>
+  <%= capture(&block) %>
 <% end %>

@@ -80,7 +80,7 @@
         <%
           label_classes = class_names(
             'govuk-radios__label',
-            { item[:label].try([], :classes) =>  item[:label] }
+            { item[:label].try(:[], :classes) =>  item[:label] }
           )
         %>
         <div class="govuk-radios__item">
@@ -90,7 +90,7 @@
                 html: item[:html],
                 text: item[:text],
                 classes: label_classes,
-                attributes: item[:label].try([], :attributes),
+                attributes: item[:label].try(:[], :attributes),
                 for: id
             })
           %>
