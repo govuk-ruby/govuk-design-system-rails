@@ -62,12 +62,12 @@
             id: item_id,
             classes: item_classes,
             name: name,
-            value: local_assigns[:value],
+            value: item[:value],
             type: "text",
             inputmode: input_mode,
-            autocomplete: local_assigns[:autocomplete],
-            pattern: local_assigns[:pattern],
-            attributes: local_assigns[:attributes]
+            autocomplete: item[:autocomplete],
+            pattern: item[:pattern] || "[0-9]*",
+            attributes: item[:attributes]
           })
         %>
       </div>

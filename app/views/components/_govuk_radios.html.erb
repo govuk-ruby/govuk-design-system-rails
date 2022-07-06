@@ -72,10 +72,10 @@
             class: "govuk-radios__input"
           }
 
-          input_attributes.merge({disabled: "disabled"}) if item[:disabled]
-          input_attributes.merge({checked: "checked"}) if item[:checked]
-          input_attributes.merge({"data-aria-controls" => conditional_id}) if item[:conditional]
-          input_attributes.merge({"aria-describedby" => item_hint_id}) if has_hint
+          input_attributes.merge!({disabled: "disabled"}) if item[:disabled]
+          input_attributes.merge!({checked: "checked"}) if item[:checked]
+          input_attributes.merge!({"data-aria-controls" => conditional_id}) if item[:conditional]
+          input_attributes.merge!({"aria-describedby" => item_hint_id}) if has_hint
         %>
         <%
           label_classes = class_names(
@@ -100,9 +100,9 @@
               govukHint({
                 id: item_hint_id,
                 classes: 'govuk-radios__hint',
-                attributes: item.hint.attributes,
-                html: item.hint.html,
-                text: item.hint.text
+                attributes: item.dig(:hint, :attributes),
+                html: item.dig(:hint, :html),
+                text: item.dig(:hint, :text)
               })
             %>
           <% end %>

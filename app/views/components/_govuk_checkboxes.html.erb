@@ -93,7 +93,7 @@
           <% end %>
         </div>
         <% if item.dig(:conditional, :html).present? %>
-          <div class="<%= class_names("govuk-checkboxes__conditional", { "govuk-checkboxes__conditional--hidden" => !item[:checked] }) %>" id="<%= conditionalId %>">
+          <div class="<%= class_names("govuk-checkboxes__conditional", { "govuk-checkboxes__conditional--hidden" => !item[:checked] }) %>" id="<%= conditional_id %>">
             <%= item.dig(:conditional, :html) %>
           </div>
         <% end %>
