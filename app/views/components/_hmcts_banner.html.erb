@@ -1,12 +1,10 @@
 <%
   banner_classes = class_names(
     "hmcts-banner",
-    local_assigns[:classes]
+    local_assigns[:classes],
+    { "hmcts-banner--#{local_assigns[:type]}" => local_assigns[:type] != "information" }
   )
-
-  banner_classes += " hmcts-banner--#{type}" unless local_assigns[:type] == "information"
 %>
-
 <%= tag.div(class: banner_classes) do %>
   <div class="hmcts-banner__message">
     <% if local_assigns[:iconFallbackText] %>
