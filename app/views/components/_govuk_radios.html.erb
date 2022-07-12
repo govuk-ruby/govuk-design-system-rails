@@ -47,8 +47,8 @@
     %>
   <% end %>
   <%
-  radio_attributes = {class: radio_classes}.merge!(local_assigns[:attributes] || {})
-                                           .merge!({"data-module" => "govuk-radios"})
+    radio_attributes = {class: radio_classes}.merge!(local_assigns[:attributes] || {})
+                                             .merge!({"data-module" => "govuk-radios"})
   %>
 
   <%= tag.div(**radio_attributes) do %>

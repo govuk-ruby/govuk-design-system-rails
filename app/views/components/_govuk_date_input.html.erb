@@ -74,12 +74,10 @@
     <% end %>
   <% end %>
 <% end %>
-
-
 <%
-form_group_classes = class_names(
-"govuk-form-group",
-"govuk-form-group--error" => local_assigns[:errorMessage])
+  form_group_classes = class_names(
+  "govuk-form-group",
+  "govuk-form-group--error" => local_assigns[:errorMessage])
 %>
 <%= tag.div(class: form_group_classes) do %>
   <% if local_assigns[:fieldset] %>
