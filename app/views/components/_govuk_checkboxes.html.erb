@@ -63,12 +63,12 @@
           <%
             input_attributes = {
                 id: item_id,
-                class: "govuk-checkboxes__input",
                 name: name,
                 type: "checkbox",
                 value: item[:value],
                 data: {}
             }.merge!(item[:attributes] || {})
+            input_attributes[:class] = class_names("govuk-checkboxes__input", input_attributes[:class])
             input_attributes[:checked] = true if item[:checked]
             input_attributes[:disabled] = true if item[:disabled]
             input_attributes[:data]["aria-controls"] = conditional_id if item.dig(:conditional, :html).present?
