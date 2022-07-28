@@ -18,6 +18,7 @@
   }
 
   select_attributes.merge!({ attributes: local_assigns[:attributes] }) if local_assigns[:attributes]
+  select_attributes.merge!({ is_autocomplete: local_assigns[:is_autocomplete] }) if local_assigns[:is_autocomplete]
 %>
 
 <%= tag.div(class: form_group_classes) do %>
@@ -87,18 +88,17 @@
   <% if local_assigns[:is_autocomplete] %>
     <%= tag.div(class: class_names("autocomplete-select-with-clear" => local_assigns[:show_all_values])) do %>
       <%= select %>
-    <% end %>
-    <% if local_assigns[:show_all_values] %>
-      <button class="autocomplete__clear-button" id="clear-<%= local_assigns[:id] %>" style="display: none;" type="button">
+      <% if local_assigns[:show_all_values] %>
+        <button id="clear-<%= local_assigns[:id] %>" class="autocomplete__clear-button" type="button" style="display: none;">
         <span class="govuk-visually-hidden">Clear autocomplete</span>
-        <svg class="autocomplete__clear-viewbox" viewbox="0 0 40 40">
+        <svg viewbox="0 0 40 40" class="autocomplete__clear-viewbox">
           <path class="autocomplete__clear-icon" d="M 10,10 L 30,30 M 30,10 L 10,30"></path>
         </svg>
-      </button>
+      <% end %>
+      <%= javascript_tag nonce: true do -%>
+        window.callAutocompleteWhenReady("<%= local_assigns[:id] %>", {showAllValues: "<%= local_assigns[:show_all_values] %>"});
+      <% end -%>
     <% end %>
-    <%= javascript_tag nonce: true do -%>
-      window.callAutocompleteWhenReady("<%= local_assigns[:id] %>", {showAllValues: "<%= local_assigns[:show_all_values] %>"});
-    <% end -%>
   <% else %>
     <%= select %>
   <% end %>
