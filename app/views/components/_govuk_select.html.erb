@@ -15,6 +15,7 @@
     class: select_classes,
     id: local_assigns[:id],
     name: local_assigns[:name],
+    "aria-describedby": described_by.presence
   }
 
   select_attributes.merge!({ attributes: local_assigns[:attributes] }) if local_assigns[:attributes]
@@ -70,12 +71,12 @@
     <%= tag.select(**select_attributes) do %>
       <% local_assigns[:items].each do |item| %>
         <%
-          option_attributes = if item[:selected]
-                                  { selected: "selected" }
-                                elsif item[:disabled]
-                                  { disabled: "disabled" }
-                                end
-          item_attributes = (item[:attributes] || {}).merge(option_attributes || {}).merge({ value: item[:value] })
+          option_attributes = {
+            selected: item[:selected],
+            disabled: item[:disabled],
+            value: item[:value]
+          }
+          item_attributes = (item[:attributes] || {}).merge(option_attributes || {})
         %>
         <%= tag.option(**item_attributes) do %>
           <%= item[:text] %>
