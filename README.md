@@ -11,6 +11,7 @@ It was originally extracted from Ruby applications built by the Office for Produ
 You **must** include the [govuk-frontend](https://github.com/alphagov/govuk-frontend/) assets (CSS, JS, images, etc.) in your application in order to make use of this library. These assets are not bundled with this gem. This gem aims for parity with a specific version of the `govuk-frontend` library.
 
 | This gem's version | Compatible with `govuk-frontend` version |
+| --- | --- |
 | 0.9.0 | 4.1.0 |
 | 0.8.2 | 3.14.0 |
 
