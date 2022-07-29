@@ -58,6 +58,7 @@
           item_described_by = !has_fieldset ? described_by : ""
           item_described_by = class_names(item_described_by, item_hint_id)
         %>
+        <%= tag.input(type: :hidden, value: (item[:unchecked_value] || "0").to_s, name: name, disabled: item[:disabled]) unless item[:disable_ghost] %>
         <div class="govuk-checkboxes__item">
           <%
             input_attributes = {
