@@ -7,7 +7,7 @@
   visually_hidden_text = local_assigns[:visuallyHiddenText].nil? ? "Error" : local_assigns[:visuallyHiddenText]
 %>
 
-<%= tag.span(**attributes) do %>
+<%= tag.p(**attributes) do %>
   <span class="govuk-visually-hidden"><%= local_assigns[:visuallyHiddenText].presence || "Error" %>:</span>
   <%= local_assigns[:html].presence || local_assigns[:text] %>
 <% end %>
