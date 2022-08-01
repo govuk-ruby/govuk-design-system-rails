@@ -78,9 +78,7 @@
           }
           item_attributes = (item[:attributes] || {}).merge(option_attributes || {})
         %>
-        <%= tag.option(**item_attributes) do %>
-          <%= item[:text] %>
-        <% end %>
+        <%= tag.option(item[:text], **item_attributes) %>
       <% end %>
     <% end %>
   <% end %>
