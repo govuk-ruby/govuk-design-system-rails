@@ -1,0 +1,7 @@
+<%
+  div_attributes = {
+    class: class_names("govuk-hint", local_assigns[:classes]),
+  }.merge!(local_assigns[:attributes].presence || {})
+  div_attributes[:id] = local_assigns[:id] if local_assigns[:id].present?
+%>
+<%= tag.div local_assigns[:html] || local_assigns[:text], **div_attributes %>

@@ -1,0 +1,32 @@
+<%
+  div_attributes = {
+    class: class_names("govuk-error-summary", local_assigns[:classes]),
+    "aria-labelledby" => "error-summary-title",
+    role: "alert",
+    data: { module: "govuk-error-summary" }
+  }.merge!(local_assigns[:attributes] || {})
+  div_attributes[:data]["disable-auto-focus"] = true if local_assigns[:disableAutoFocus]
+%>
+<%= tag.div **div_attributes do %>
+  <h2 class="govuk-error-summary__title" id="error-summary-title">
+    <%= local_assigns[:titleHtml].presence || local_assigns[:titleText] %>
+  </h2>
+  <div class="govuk-error-summary__body">
+    <% if local_assigns[:descriptionHtml] || local_assigns[:descriptionText] %>
+      <p>
+        <%= local_assigns[:descriptionHtml].presence || local_assigns[:descriptionText] %>
+      </p>
+    <% end %>
+    <ul class="govuk-list govuk-error-summary__list">
+      <% (local_assigns[:errorList] || []).each do |item| %>
+        <li>
+          <% if item[:href].present? %>
+            <%= tag.a (item[:html].presence || item[:text]), href: item[:href], **(item[:attributes] || {}) %>
+          <% else %>
+            <%= item[:html].presence || item[:text] %>
+          <% end %>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>

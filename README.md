@@ -6,6 +6,15 @@ It was originally extracted from Ruby applications built by the Office for Produ
 
 **It's not likely to be useful to anyone else in its current state but we hope to improve it over time.**
 
+## Compatibility
+
+You **must** include the [govuk-frontend](https://github.com/alphagov/govuk-frontend/) assets (CSS, JS, images, etc.) in your application in order to make use of this library. These assets are not bundled with this gem. This gem aims for parity with a specific version of the `govuk-frontend` library.
+
+| This gem's version | Compatible with `govuk-frontend` version |
+| --- | --- |
+| 0.9.0 | 4.1.0 |
+| 0.8.2 | 3.14.0 |
+
 # Installation
 
 Add the following to your project's Gemfile:
@@ -16,10 +25,12 @@ gem 'govuk-design-system-rails', github: 'UKGovernmentBEIS/govuk-design-system-r
 and run `bundle install`
 
 # Design System Components
+
 The [GOV.UK design system](https://design-system.service.gov.uk) provides a reference implementation of its components in Nunjucks, which are unfortunately not supported on Ruby. In lieu of that, we are implementing
-slim versions of the components that can be used throughout the applications.
+ERB versions of the components that can be used throughout the applications.
 
 ## Component implementations
+
 Component implementations can be found in the [components directory](app/views/components). They try to follow the
 nunjucks implementations as close as possible. In particular, we are keeping the interface the same (param names etc.)
 to make translating code between the macros usage and our implementation as close as possible.
@@ -28,15 +39,16 @@ e.g. see [macro options for radios](https://design-system.service.gov.uk/compone
 
 Notable differences from nunjucks:
 - we are not allowing unescaped html in `html` attributes. Instead, the expected use-case is to build the required html
-     in slim and `capture` it, e.g.:
-    ```slim
-    - html = capture do
-      h3 Custom html content
-    = render "components/govuk_label", html: html, for: "someId"
+    and `capture` it, e.g.:
+    ```erb
+    <% html = capture do %>
+      <h3>Custom html content</h3>
+    <% end %>
+    <%= govukLabel html: html, for: "someId" %>
     ```
     This renders most `text` and `html` attributes functionally identical, but we are choosing to keep both for consistency
     with nunjucks templates
-- We extended govuk_select component to streamline using it as accessible autocomplete component.
+- We extended the govukSelect component to streamline using it as accessible autocomplete component.
     Our version accepts extra options:
     - is_autocomplete, when true, makes the select an
     [accessible autocomplete](https://github.com/alphagov/accessible-autocomplete)
@@ -46,15 +58,12 @@ Notable differences from nunjucks:
   https://apidock.com/rails/ActionView/Helpers/FormHelper/check_box
 
 ## Rails integration
+
 To simplify working with rails form helpers, we are also providing a bit of "glue" which infers the values that it
 can from the form object and converts them into appropriate params for the view components. Those can be found
 in the [form_components directory](app/views/form_components).
+
 The intent of keeping this "glue" separate from the component implementations is to make keeping the components up to
 date with the corresponding macros as simple as possible.
 
-## Gallery
-As a way to showcase the possible use cases, we are providing "gallery" pages. They are based on examples provided
-in the govuk-frontend repo, e.g. [radios examples](
-https://github.com/alphagov/govuk-frontend/blob/943ff14752f0a8a765ee3f90bc3e1ecd9205e36c/src/components/radios/radios.yaml).
-
-The gallery pages area available at `/components/<component_name>`, and only get mounted in dev mode.
+The helpers accept a `form` parameter, when this is present, the `form_components` version of a component is used.

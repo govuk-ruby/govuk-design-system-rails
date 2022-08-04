@@ -1,0 +1,70 @@
+<% described_by = "" %>
+
+<%
+  form_classes = class_names(
+    "govuk-form-group",
+    { "govuk-form-group--error" => local_assigns[:errorMessage] },
+    local_assigns[:formGroup].try(:[], :classes)
+  )
+%>
+
+<% text_area_class = class_names(
+    "govuk-textarea",
+    { "govuk-textarea--error" => local_assigns[:errorMessage] },
+    local_assigns[:classes]
+)
+%>
+
+<%= tag.div(class: form_classes) do %>
+  <%=
+    govukLabel({
+        html: local_assigns[:label][:html],
+        text: local_assigns[:label][:text],
+        classes: local_assigns[:label][:classes],
+        isPageHeading: local_assigns[:label][:isPageHeading],
+        attributes: local_assigns[:label][:attributes],
+        for: local_assigns[:id]
+    })
+  %>
+
+  <% if local_assigns[:hint] %>
+    <% hintId = local_assigns[:id].to_s + '-hint' %>
+    <% described_by = described_by.blank? ? hintId : described_by + ' ' + hintId %>
+    <%= govukHint({
+      id: hintId,
+      classes: local_assigns[:hint][:classes],
+      attributes: local_assigns[:hint][:attributes],
+      html: local_assigns[:hint][:html],
+      text: local_assigns[:hint][:text]
+      }) %>
+  <% end %>
+
+  <% if local_assigns[:errorMessage] %>
+    <% errorId = local_assigns[:id].to_s + '-error' %>
+    <% described_by = described_by.blank? ? errorId : described_by + ' ' + errorId %>
+    <% attributes = local_assigns[:errorMessage][:attributes] || {} %>
+    <%= govukErrorMessage({
+      id: errorId,
+      classes: local_assigns[:errorMessage][:classes],
+      attributes: attributes.merge({id: errorId}),
+      html: local_assigns[:errorMessage][:html],
+      text: local_assigns[:errorMessage][:text],
+      visuallyHiddenText: local_assigns[:errorMessage][:visuallyHiddenText]
+    }) %>
+  <% end %>
+
+  <%
+    rows = local_assigns[:rows] || 5
+    text_area_attributes = {
+      class: text_area_class,
+      id: local_assigns[:id],
+      name: local_assigns[:name],
+      key: local_assigns[:key],
+      rows: rows,
+      "aria-describedby" => described_by,
+    }.merge!(local_assigns[:attributes] || {})
+    text_area_attributes[:autocomplete] = local_assigns[:autocomplete] if local_assigns[:autocomplete].present?
+  %>
+
+  <%= tag.textarea(local_assigns[:value], **text_area_attributes) %>
+<% end %>

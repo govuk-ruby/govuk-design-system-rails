@@ -1,0 +1,40 @@
+<%
+  id_prefix = local_assigns[:idPrefix]
+  attributes = {
+    class: class_names("govuk-tabs", local_assigns[:classes]),
+    data: { module: "govuk-tabs" }
+  }.merge!(local_assigns[:attributes] || {})
+%>
+<%= tag.div **attributes do %>
+  <h2 class="govuk-tabs__title">
+    <%= local_assigns[:title] || "Contents" %>
+  </h2>
+  <% if (items = local_assigns[:items] || []).any? %>
+    <ul class="govuk-tabs__list">
+      <% items.each_with_index do |item, i| %>
+        <% if item %>
+          <%
+            item_id = item[:id].presence || ([id_prefix, i].join("-"))
+            item_classes = class_names("govuk-tabs__list-item", { "govuk-tabs__list-item--selected" => i.zero? })
+            link_attributes = item[:attributes] || {}
+            link_attributes[:class] = class_names("govuk-tabs__tab", link_attributes[:class])
+          %>
+          <li class="<%= item_classes %>">
+            <%= tag.a item[:label], href: "##{item_id}", **link_attributes %>
+          </li>
+        <% end %>
+      <% end %>
+    </ul>
+    <% items.each_with_index do |item, i| %>
+      <% if item %>
+        <%
+          item_id = item[:id].presence || ([id_prefix, i].join("-"))
+          panel_attributes = {
+            class: class_names("govuk-tabs__panel", { "govuk-tabs__panel--hidden" => i.positive? })
+          }.merge!(item.dig(:panel, :attributes) || {})
+        %>
+        <%= tag.div((item.dig(:panel, :html).presence || item.dig(:panel, :text)), id: item_id, **panel_attributes) %>
+      <% end %>
+    <% end %>
+  <% end %>
+<% end %>

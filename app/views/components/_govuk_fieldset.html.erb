@@ -1,0 +1,22 @@
+<%
+  fieldset_attributes = {
+    class: "govuk-fieldset",
+  }
+
+  fieldset_attributes.merge!(role: local_assigns[:role]) if local_assigns[:role]
+  fieldset_attributes.merge!("aria-describedby" => local_assigns[:describedBy]) if local_assigns[:describedBy]
+%>
+<%= tag.fieldset(**fieldset_attributes) do %>
+  <% if local_assigns[:legend].present? %>
+    <%= tag.legend class: "govuk-fieldset__legend #{local_assigns[:legend][:classes]}" do %>
+      <% if local_assigns[:legend][:isPageHeading] %>
+        <%= tag.h1 class: "govuk-fieldset__heading" do %>
+          <%= local_assigns[:legend][:html].presence || local_assigns[:legend][:text] %>
+        <% end %>
+      <% else %>
+        <%= local_assigns[:legend][:html].presence || local_assigns[:legend][:text] %>
+      <% end %>
+    <% end %>
+  <% end %>
+  <%= capture(&block) %>
+<% end %>

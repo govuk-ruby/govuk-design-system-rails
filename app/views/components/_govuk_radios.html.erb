@@ -1,0 +1,139 @@
+<%
+   id_prefix = local_assigns[:idPrefix] || local_assigns[:name]
+   described_by = ""
+   is_conditional = items.any? { |item| item[:conditional] }
+%>
+
+<% radios_html = capture do %>
+  <% if local_assigns[:hint] %>
+    <%
+      hint_id = id_prefix + '-hint'
+      described_by = described_by.present? ? described_by + ' ' + hint_id : hint_id
+      hint_classes = class_names(
+        "govuk-hint",
+        local_assigns[:hint][:classes]
+      )
+    %>
+    <%= govukHint({
+      id: hint_id,
+      classes: hint_classes,
+      attributes: local_assigns[:hint][:attributes],
+      html: local_assigns[:hint][:html],
+      text: local_assigns[:hint][:text]
+      }) %>
+  <% end %>
+
+  <% radio_classes = class_names(
+      "govuk-radios",
+      { "govuk-radios--conditional" => is_conditional },
+      local_assigns[:classes]
+  )
+  %>
+  <% if local_assigns[:errorMessage] %>
+    <%
+      error_id = id_prefix + '-error'
+      described_by = described_by.blank? ? error_id : "#{described_by} #{error_id}"
+      error_attributes  = (local_assigns[:errorMessage][:attributes] || {}).merge(id: error_id)
+    %>
+    <%=
+      govukErrorMessage({
+        id: error_id,
+        classes: local_assigns[:errorMessage][:classes],
+        attributes: error_attributes,
+        html: local_assigns[:errorMessage][:html],
+        text: local_assigns[:errorMessage][:text],
+        visuallyHiddenText: local_assigns[:errorMessage][:visuallyHiddenText]
+      })
+    %>
+  <% end %>
+  <%
+    radio_attributes = {class: radio_classes}.merge!(local_assigns[:attributes] || {})
+                                             .merge!({"data-module" => "govuk-radios"})
+  %>
+
+  <%= tag.div(**radio_attributes) do %>
+    <% local_assigns[:items].each_with_index do |item, index| %>
+      <%
+        id = item[:id] || "#{id_prefix}-#{index + 1}"
+        conditional_id = 'conditional-' + id
+      %>
+      <% if item[:divider] %>
+        <div class="govuk-radios__divider">
+          <%= item[:divider] %>
+      <% else %>
+        <%
+          has_hint = item[:hint] && (item[:hint][:text] || item[:hint][:html])
+          item_hint_id = id + '-item-hint'
+          disabled = item
+          input_attributes = {
+            id: id,
+            name: local_assigns[:name],
+            type: "radio",
+            value: item[:value],
+            class: "govuk-radios__input"
+          }
+
+          input_attributes.merge!({disabled: "disabled"}) if item[:disabled]
+          input_attributes.merge!({checked: "checked"}) if item[:checked]
+          input_attributes.merge!({"data-aria-controls" => conditional_id}) if item[:conditional]
+          input_attributes.merge!({"aria-describedby" => item_hint_id}) if has_hint
+        %>
+        <%
+          label_classes = class_names(
+            'govuk-radios__label',
+            { item[:label].try(:[], :classes) =>  item[:label] }
+          )
+        %>
+        <div class="govuk-radios__item">
+          <%= tag.input(**input_attributes) %>
+          <%=
+            govukLabel({
+                html: item[:html],
+                text: item[:text],
+                classes: label_classes,
+                attributes: item[:label].try(:[], :attributes),
+                for: id
+            })
+          %>
+
+          <% if has_hint %>
+            <%=
+              govukHint({
+                id: item_hint_id,
+                classes: 'govuk-radios__hint',
+                attributes: item.dig(:hint, :attributes),
+                html: item.dig(:hint, :html),
+                text: item.dig(:hint, :text)
+              })
+            %>
+          <% end %>
+      <% end %>
+      </div>
+
+      <% if item[:conditional] %>
+        <% conditional_classes = class_names(
+            "govuk-radios__conditional",
+            "govuk-radios__conditional--hidden" => item[:checked].blank?
+        ) %>
+
+        <%= tag.div(class: conditional_classes, id: conditional_id) do %>
+          <%= item[:conditional][:html] %>
+        <% end %>
+      <% end %>
+    <% end %>
+  <% end %>
+<% end %>
+
+<% form_group_classes = class_names(
+  "govuk-form-group",
+  local_assigns.dig(:formGroup, :classes),
+  "govuk-form-group--error" => local_assigns[:errorMessage]
+) %>
+
+<%= tag.div(class: form_group_classes) do %>
+  <% if local_assigns[:fieldset].present? %>
+    <%= govukFieldset(classes: "", describedBy: described_by, legend: local_assigns[:fieldset][:legend], attributes: local_assigns[:fieldset]) { radios_html } %>
+  <% else %>
+    <%= radios_html %>
+  <% end %>
+<% end %>
