@@ -1,7 +1,8 @@
 <%
-  if local_assigns[:type] ==  "success"
+  banner_type = local_assigns[:type]&.to_s
+  if banner_type ==  "success"
     success_banner = true
-    type_class = "govuk-notification-banner--" + local_assigns[:type]
+    type_class = "govuk-notification-banner--" + banner_type
   end
 
   role = if local_assigns[:role]
