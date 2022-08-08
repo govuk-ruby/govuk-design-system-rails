@@ -1,0 +1,67 @@
+<%
+  if local_assigns[:type] ==  "success"
+    success_banner = true
+    type_class = "govuk-notification-banner--" + local_assigns[:type]
+  end
+
+  role = if local_assigns[:role]
+    local_assigns[:role]
+  elsif success_banner
+    "alert"
+  else
+    "region"
+  end
+
+  title = if local_assigns[:titleHtml]
+            local_assigns[:titleHtml]
+          elsif local_assigns[:titleText]
+            local_assigns[:titleText]
+          elsif success_banner
+            "Success"
+          else
+            "Important"
+          end
+
+  banner_classes =  class_names(
+    "govuk-notification-banner",
+    type_class,
+    local_assigns[:classes]
+  )
+
+  labelled_by = local_assigns[:titleId] || "govuk-notification-banner-title"
+
+  attributes = {
+    role: role,
+    "aria-labelledby" => labelled_by,
+    "data-module" => "govuk-notification-banner",
+    class: banner_classes
+  }.merge(local_assigns[:attributes] || {})
+
+  attributes.merge!({ "data-disable-auto-focus" => true }) if local_assigns[:disableAutoFocus]
+
+  title_heading_level = local_assigns[:title_heading_level] ? "h#{local_assigns[:title_heading_level]}" : "h2"
+
+  header_attributes = {
+    class: "govuk-notification-banner__title",
+    id: labelled_by
+  }
+%>
+
+<%= tag.div **attributes do %>
+  <div class="govuk-notification-banner__header">
+    <%= tag.send(title_heading_level, **header_attributes) do %>
+      <%= title %>
+    <% end %>
+  </div>
+  <div class="govuk-notification-banner__content">
+    <% if local_assigns[:block] %>
+      <%= yield %>
+    <% elsif local_assigns[:html] %>
+      <%= local_assigns[:html] %>
+    <% elsif local_assigns[:text] %>
+      <p class="govuk-notification-banner__heading">
+        <%= local_assigns[:text] %>
+      </p>
+    <% end %>
+  </div>
+<% end %>
