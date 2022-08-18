@@ -2,15 +2,15 @@ $LOAD_PATH.push File.expand_path("lib", __dir__)
 
 Gem::Specification.new do |s|
   s.name        = "govuk-design-system-rails"
-  s.version     = "0.9.1"
-  s.authors     = %w[UKGovernmentBEIS]
+  s.version     = "0.9.2"
+  s.authors     = %w[OfficeForProductSafetyAndStandards]
   s.summary     = "An implementation of the govuk-frontend macros in Ruby on Rails"
   s.test_files  = Dir["spec/**/*"]
   s.required_ruby_version = ">= 2.7.0"
 
   s.add_development_dependency "compare-xml"
   s.add_development_dependency "nokogiri"
-  s.add_development_dependency "rails", "~> 6.1.4", ">= 6.1.4.6"
+  s.add_development_dependency "rails", "~> 6.1.6", ">= 6.1.6.1"
   s.add_development_dependency "rspec-rails"
   s.add_development_dependency "rubocop"
   s.add_development_dependency "rubocop-govuk"

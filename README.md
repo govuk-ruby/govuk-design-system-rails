@@ -2,9 +2,7 @@
 
 This gem contains a [Rails engine](https://guides.rubyonrails.org/engines.html) containing a Ruby on Rails port of some [GOV.UK Design System](https://design-system.service.gov.uk/) components.
 
-It was originally extracted from Ruby applications built by the Office for Product Safety and Standards (see: https://github.com/UKGovernmentBEIS/beis-opss/pull/1374) and is by no means complete and does not currently provide CSS/JS elements. Some components probably don't behave in the same way as the originals.
-
-**It's not likely to be useful to anyone else in its current state but we hope to improve it over time.**
+It was originally extracted from Ruby applications built by the Office for Product Safety and Standards (see: https://github.com/UKGovernmentBEIS/beis-opss/pull/1374) and is by no means complete. Not every component is implemented and some components may not behave in exactly the same way as the originals. The project does aim for feature parity and PRs are welcome.
 
 ## Compatibility
 
@@ -12,6 +10,7 @@ You **must** include the [govuk-frontend](https://github.com/alphagov/govuk-fron
 
 | This gem's version | Compatible with `govuk-frontend` version |
 | --- | --- |
+| 0.9.2 | 4.3.0 |
 | 0.9.0 | 4.1.0 |
 | 0.8.2 | 3.14.0 |
 
@@ -20,7 +19,7 @@ You **must** include the [govuk-frontend](https://github.com/alphagov/govuk-fron
 Add the following to your project's Gemfile:
 
 ```ruby
-gem 'govuk-design-system-rails', github: 'UKGovernmentBEIS/govuk-design-system-rails'
+gem "govuk-design-system-rails", github: "OfficeForProductSafetyAndStandards/govuk-design-system-rails"
 ```
 and run `bundle install`
 
