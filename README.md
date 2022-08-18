@@ -19,7 +19,7 @@ You **must** include the [govuk-frontend](https://github.com/alphagov/govuk-fron
 Add the following to your project's Gemfile:
 
 ```ruby
-gem "govuk-design-system-rails", github: "OfficeForProductSafetyAndStandards/govuk-design-system-rails"
+gem "govuk-design-system-rails", git: "https://github.com/OfficeForProductSafetyAndStandards/govuk-design-system-rails", tag: "0.9.2", require: "govuk_design_system"
 ```
 and run `bundle install`
 
