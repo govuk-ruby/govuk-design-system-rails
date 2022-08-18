@@ -97,10 +97,11 @@
           %>
 
           <% if has_hint %>
+            <% item_hint_classes = class_names('govuk-radios__hint', item.dig(:hint, :classes)) %>
             <%=
               govukHint({
                 id: item_hint_id,
-                classes: 'govuk-radios__hint',
+                classes: item_hint_classes,
                 attributes: item.dig(:hint, :attributes),
                 html: item.dig(:hint, :html),
                 text: item.dig(:hint, :text)
