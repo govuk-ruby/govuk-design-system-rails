@@ -72,7 +72,7 @@
       <% local_assigns[:items].each do |item| %>
         <%
           option_attributes = {
-            selected: item[:selected],
+            selected: item[:selected] || (!local_assigns[:value].nil? && item[:value] == local_assigns[:value]),
             disabled: item[:disabled],
             value: item[:value]
           }

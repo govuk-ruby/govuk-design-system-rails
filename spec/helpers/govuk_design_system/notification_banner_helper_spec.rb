@@ -48,6 +48,25 @@ RSpec.describe GovukDesignSystem::NotificationBannerHelper, type: :helper do
       end
     end
 
+    context "when passing a block to the component" do
+      it "returns the correct HTML" do
+        output = helper.govukNotificationBanner { "Testing block passing" }
+
+        expect(output).to match_html(<<~HTML)
+          <div class="govuk-notification-banner" role="region" aria-labelledby="govuk-notification-banner-title" data-module="govuk-notification-banner">
+            <div class="govuk-notification-banner__header">
+              <h2 class="govuk-notification-banner__title" id="govuk-notification-banner-title">
+                Important
+              </h2>
+            </div>
+            <div class="govuk-notification-banner__content">
+              Testing block passing
+            </div>
+          </div>
+        HTML
+      end
+    end
+
     context "when rendering a success banner" do
       context "when passing html to the component" do
         it "returns the correct HTML for success" do

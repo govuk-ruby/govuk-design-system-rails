@@ -57,6 +57,7 @@
           item_hint_id = has_hint ? "#{item_id}-item-hint" : ""
           item_described_by = !has_fieldset ? described_by : ""
           item_described_by = class_names(item_described_by, item_hint_id)
+          is_checked = item[:checked] || (!item[:value].nil? && item[:values].try(:any?) && item[:values].include?(item[:value]))
         %>
         <%= tag.input(type: :hidden, value: (item[:unchecked_value] || "0").to_s, name: name, disabled: item[:disabled]) unless item[:disable_ghost] %>
         <div class="govuk-checkboxes__item">
@@ -69,7 +70,7 @@
                 data: {}
             }.merge!(item[:attributes] || {})
             input_attributes[:class] = class_names("govuk-checkboxes__input", input_attributes[:class])
-            input_attributes[:checked] = true if item[:checked]
+            input_attributes[:checked] = true if is_checked
             input_attributes[:disabled] = true if item[:disabled]
             input_attributes[:data]["aria-controls"] = conditional_id if item.dig(:conditional, :html).present?
             input_attributes[:data][:behaviour] = item[:behaviour] if item[:behaviour].present?
@@ -94,7 +95,7 @@
           <% end %>
         </div>
         <% if item.dig(:conditional, :html).present? %>
-          <div class="<%= class_names("govuk-checkboxes__conditional", { "govuk-checkboxes__conditional--hidden" => !item[:checked] }) %>" id="<%= conditional_id %>">
+          <div class="<%= class_names("govuk-checkboxes__conditional", { "govuk-checkboxes__conditional--hidden" => !is_checked }) %>" id="<%= conditional_id %>">
             <%= item.dig(:conditional, :html) %>
           </div>
         <% end %>

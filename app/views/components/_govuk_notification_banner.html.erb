@@ -56,7 +56,7 @@
   </div>
   <div class="govuk-notification-banner__content">
     <% if local_assigns[:block] %>
-      <%= yield %>
+      <%= capture &block %>
     <% elsif local_assigns[:html] %>
       <%= local_assigns[:html] %>
     <% elsif local_assigns[:text] %>
