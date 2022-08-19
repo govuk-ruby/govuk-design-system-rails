@@ -10,7 +10,7 @@ You **must** include the [govuk-frontend](https://github.com/alphagov/govuk-fron
 
 | This gem's version | Compatible with `govuk-frontend` version |
 | --- | --- |
-| 0.9.2 | 4.3.0 |
+| 0.9.3 | 4.3.0 |
 | 0.9.0 | 4.1.0 |
 | 0.8.2 | 3.14.0 |
 
