@@ -78,5 +78,52 @@ RSpec.describe GovukDesignSystem::TabsHelper, type: :helper do
         </div>
       HTML
     end
+
+    it "returns the correct HTML for a text panel item" do
+      html = helper.govukTabs({
+        items: [
+          {
+            label: "Past day",
+            id: "past-day",
+            panel: {
+              text: "Past day"
+            }
+          },
+          {
+            label: "Past week",
+            id: "past-week",
+            panel: {
+              html: "<strong>Past week</strong>".html_safe
+            }
+          }
+        ]
+      })
+
+      expect(html).to match_html(<<~HTML)
+        <div class="govuk-tabs" data-module="govuk-tabs">
+          <h2 class="govuk-tabs__title">
+            Contents
+          </h2>
+          <ul class="govuk-tabs__list">
+            <li class="govuk-tabs__list-item govuk-tabs__list-item--selected">
+              <a class="govuk-tabs__tab" href="#past-day">
+                Past day
+              </a>
+            </li>
+            <li class="govuk-tabs__list-item">
+              <a class="govuk-tabs__tab" href="#past-week">
+                Past week
+              </a>
+            </li>
+          </ul>
+          <div class="govuk-tabs__panel" id="past-day">
+            <p class="govuk-body">Past day</p>
+          </div>
+          <div class="govuk-tabs__panel govuk-tabs__panel--hidden" id="past-week">
+            <strong>Past week</strong>
+          </div>
+        </div>
+      HTML
+    end
   end
 end

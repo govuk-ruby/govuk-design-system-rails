@@ -12,7 +12,7 @@ module GovukDesignSystem
     # Implementation based on https://github.com/alphagov/govuk-frontend/blob/master/src/govuk/components/details/
     #
     def govukDetails(summaryText: nil, summaryHtml: nil, text: nil, html: nil, id: nil, open: nil, classes: "", attributes: {})
-      attributes.merge!("class" => "govuk-details #{classes}", id: id, "data-module" => "govuk-details")
+      attributes.merge!("class" => class_names("govuk-details", classes), id: id, "data-module" => "govuk-details")
       attributes["open"] = "open" if open
 
       content_tag("details", attributes) do

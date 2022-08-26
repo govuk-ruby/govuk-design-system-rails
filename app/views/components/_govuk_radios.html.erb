@@ -65,6 +65,7 @@
           has_hint = item[:hint] && (item[:hint][:text] || item[:hint][:html])
           item_hint_id = id + '-item-hint'
           disabled = item
+          is_checked = item[:checked] || (!item[:value].nil? && item[:value] == local_assigns[:value])
           input_attributes = {
             id: id,
             name: local_assigns[:name],
@@ -74,7 +75,7 @@
           }
 
           input_attributes.merge!({disabled: "disabled"}) if item[:disabled]
-          input_attributes.merge!({checked: "checked"}) if item[:checked]
+          input_attributes.merge!({checked: "checked"}) if is_checked
           input_attributes.merge!({"data-aria-controls" => conditional_id}) if item[:conditional]
           input_attributes.merge!({"aria-describedby" => item_hint_id}) if has_hint
         %>
@@ -114,7 +115,7 @@
       <% if item[:conditional] %>
         <% conditional_classes = class_names(
             "govuk-radios__conditional",
-            "govuk-radios__conditional--hidden" => item[:checked].blank?
+            "govuk-radios__conditional--hidden" => !is_checked
         ) %>
 
         <%= tag.div(class: conditional_classes, id: conditional_id) do %>

@@ -33,7 +33,13 @@
             class: class_names("govuk-tabs__panel", { "govuk-tabs__panel--hidden" => i.positive? })
           }.merge!(item.dig(:panel, :attributes) || {})
         %>
-        <%= tag.div((item.dig(:panel, :html).presence || item.dig(:panel, :text)), id: item_id, **panel_attributes) %>
+        <%= tag.div(id: item_id, **panel_attributes) do %>
+          <% if (html_content = item.dig(:panel, :html).presence) %>
+            <%= html_content %>
+          <% else %>
+            <p class="govuk-body"><%= item.dig(:panel, :text) %></p>
+          <% end %>
+        <% end %>
       <% end %>
     <% end %>
   <% end %>

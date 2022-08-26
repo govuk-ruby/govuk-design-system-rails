@@ -105,7 +105,7 @@ RSpec.describe GovukDesignSystem::HeaderHelper, type: :helper do
                 Service name
               </a>
               <nav aria-label="Menu" class="govuk-header__navigation">
-                <button type="button" class="govuk-header__menu-button govuk-js-header-toggle" aria-controls="navigation" aria-label="Show or hide menu">Menu</button>
+                <button type="button" class="govuk-header__menu-button govuk-js-header-toggle" aria-controls="navigation" aria-label="Show or hide menu" hidden>Menu</button>
                 <ul id="navigation" class="govuk-header__navigation-list">
                   <li class="govuk-header__navigation-item govuk-header__navigation-item--active">
                     <a class="govuk-header__link" href="#1">
