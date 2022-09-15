@@ -18,7 +18,7 @@
     "aria-describedby": described_by.presence
   }
 
-  select_attributes.merge!({ attributes: local_assigns[:attributes] }) if local_assigns[:attributes]
+  select_attributes.merge!(local_assigns[:attributes]) if local_assigns[:attributes]
 %>
 
 <%= tag.div(class: form_group_classes) do %>
