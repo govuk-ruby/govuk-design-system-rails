@@ -1,7 +1,7 @@
 <% described_by = local_assigns[:describedBy] %>
 <% form_group_classes = class_names(
     'govuk-form-group',
-    { 'govuk-form-group--error' => local_assigns.dig(:formGroup, :errorMessage) },
+    { 'govuk-form-group--error' => local_assigns[:errorMessage] },
     local_assigns.dig(:formGroup, :classes)
   )
 %>

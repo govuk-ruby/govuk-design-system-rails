@@ -113,5 +113,45 @@ RSpec.describe GovukDesignSystem::InputHelper, type: :helper do
         </div>
       HTML
     end
+
+    it "handles error messages correctly" do
+      html = helper.govukInput({
+        id: "cost-per-item-error",
+        name: "cost-per-item-error",
+        label: {
+          text: "What is the cost per item, in pounds?",
+          classes: "govuk-label--l",
+          isPageHeading: true
+        },
+        prefix: {
+          text: "£"
+        },
+        suffix: {
+          text: "per item"
+        },
+        errorMessage: {
+          text: "Enter a cost per item, in pounds"
+        },
+        classes: "govuk-input--width-5",
+        spellcheck: false
+      })
+
+      expect(html).to match_html(<<~HTML)
+        <div class="govuk-form-group govuk-form-group--error">
+          <h1 class="govuk-label-wrapper"><label class="govuk-label govuk-label--l" for="cost-per-item-error">
+              What is the cost per item, in pounds?
+            </label>
+          </h1>
+          <p id="cost-per-item-error-error" class="govuk-error-message">
+            <span class="govuk-visually-hidden">Error:</span> Enter a cost per item, in pounds
+          </p>
+          <div class="govuk-input__wrapper">
+            <div class="govuk-input__prefix" aria-hidden="true">£</div>
+            <input class="govuk-input govuk-input--width-5 govuk-input--error" id="cost-per-item-error" name="cost-per-item-error" type="text" spellcheck="false" aria-describedby="cost-per-item-error-error">
+            <div class="govuk-input__suffix" aria-hidden="true">per item</div>
+          </div>
+        </div>
+      HTML
+    end
   end
 end
