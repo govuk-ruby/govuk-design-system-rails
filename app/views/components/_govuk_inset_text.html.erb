@@ -1,0 +1,10 @@
+<%
+  div_attributes = {
+    class: class_names("govuk-inset-text", local_assigns[:classes]),
+  }.merge!(local_assigns[:attributes].presence || {})
+  div_attributes[:id] = local_assigns[:id] if local_assigns[:id].present?
+%>
+<%= tag.div **div_attributes do %>
+  <%= local_assigns[:html] || local_assigns[:text] %>
+  <%= capture(&block) if block %>
+<% end %>
