@@ -16,18 +16,18 @@ RSpec.describe GovukDesignSystem::InsetTextHelper, type: :helper do
 
     it "returns the correct HTML for an example using html" do
       inset_html = '<p class="govuk-body-l govuk-!-margin-bottom-4">
-                            Creating a case starts from a product record page.
-                        </p>
-                        <p class="govuk-body">
-                            Find a product and create the case from there.
-                        </p>
-                        <details class="govuk-details" data-module="govuk-details">
-                            <summary class="govuk-details__summary">
-                              <span class="govuk-details__summary-text">
-                                How to create a case
-                              </span>
-                            </summary>
-                        </details>'.html_safe
+                      Creating a case starts from a product record page.
+                    </p>
+                    <p class="govuk-body">
+                      Find a product and create the case from there.
+                    </p>
+                    <details class="govuk-details" data-module="govuk-details">
+                      <summary class="govuk-details__summary">
+                        <span class="govuk-details__summary-text">
+                          How to create a case
+                        </span>
+                      </summary>
+                    </details>'.html_safe
 
       html = helper.govukInsetText({
         classes: "govuk-!-margin-bottom-7",
@@ -35,20 +35,20 @@ RSpec.describe GovukDesignSystem::InsetTextHelper, type: :helper do
       })
 
       expect(html).to match_html(<<~HTML)
-       <div class="govuk-inset-text govuk-!-margin-bottom-7">
-            <p class="govuk-body-l govuk-!-margin-bottom-4">
-                Creating a case starts from a product record page.
-            </p>
-            <p class="govuk-body">
-                Find a product and create the case from there.
-            </p>
-            <details class="govuk-details" data-module="govuk-details">
-                <summary class="govuk-details__summary">
-                  <span class="govuk-details__summary-text">
-                    How to create a case
-                  </span>
-                </summary>
-            </details>
+        <div class="govuk-inset-text govuk-!-margin-bottom-7">
+          <p class="govuk-body-l govuk-!-margin-bottom-4">
+            Creating a case starts from a product record page.
+          </p>
+          <p class="govuk-body">
+            Find a product and create the case from there.
+          </p>
+          <details class="govuk-details" data-module="govuk-details">
+            <summary class="govuk-details__summary">
+              <span class="govuk-details__summary-text">
+                How to create a case
+              </span>
+            </summary>
+          </details>
         </div>
       HTML
     end
