@@ -15,19 +15,21 @@ RSpec.describe GovukDesignSystem::InsetTextHelper, type: :helper do
     end
 
     it "returns the correct HTML for an example using html" do
-      inset_html = '<p class="govuk-body-l govuk-!-margin-bottom-4">
-                      Creating a case starts from a product record page.
-                    </p>
-                    <p class="govuk-body">
-                      Find a product and create the case from there.
-                    </p>
-                    <details class="govuk-details" data-module="govuk-details">
-                      <summary class="govuk-details__summary">
-                        <span class="govuk-details__summary-text">
-                          How to create a case
-                        </span>
-                      </summary>
-                    </details>'.html_safe
+      inset_html = <<~HTML.html_safe
+        <p class="govuk-body-l govuk-!-margin-bottom-4">
+          Creating a case starts from a product record page.
+        </p>
+        <p class="govuk-body">
+          Find a product and create the case from there.
+        </p>
+        <details class="govuk-details" data-module="govuk-details">
+          <summary class="govuk-details__summary">
+            <span class="govuk-details__summary-text">
+              How to create a case
+            </span>
+          </summary>
+        </details>
+      HTML
 
       html = helper.govukInsetText({
         classes: "govuk-!-margin-bottom-7",
