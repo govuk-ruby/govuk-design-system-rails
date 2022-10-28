@@ -25,6 +25,7 @@ module GovukDesignSystem
         ActionView::Base.include GovukDesignSystem::HmctsBadgeHelper
         ActionView::Base.include GovukDesignSystem::HmctsBannerHelper
         ActionView::Base.include GovukDesignSystem::InputHelper
+        ActionView::Base.include GovukDesignSystem::InsetTextHelper
         ActionView::Base.include GovukDesignSystem::LabelHelper
         ActionView::Base.include GovukDesignSystem::NotificationBannerHelper
         ActionView::Base.include GovukDesignSystem::PhaseBannerHelper
