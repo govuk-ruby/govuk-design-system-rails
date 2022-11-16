@@ -1,6 +1,6 @@
 <%
   fieldset_attributes = {
-    class: "govuk-fieldset #{local_assigns[:classes]}",
+    class: ("govuk-fieldset #{local_assigns[:classes]}").strip,
   }
 
   fieldset_attributes.merge!(role: local_assigns[:role]) if local_assigns[:role]
