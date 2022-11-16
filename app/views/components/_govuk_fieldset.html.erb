@@ -1,10 +1,9 @@
 <%
   fieldset_attributes = {
-    class: "govuk-fieldset",
+    class: "govuk-fieldset #{local_assigns[:classes]}",
   }
 
   fieldset_attributes.merge!(role: local_assigns[:role]) if local_assigns[:role]
-  fieldset_attributes.merge!(class: local_assigns[:classes]) if local_assigns[:classes]
   fieldset_attributes.merge!("aria-describedby" => local_assigns[:describedBy]) if local_assigns[:describedBy]
 %>
 <%= tag.fieldset(**fieldset_attributes) do %>
