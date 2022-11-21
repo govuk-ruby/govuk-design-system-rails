@@ -212,31 +212,31 @@ RSpec.describe GovukDesignSystem::RadiosHelper, type: :helper do
 
     it "returns the correct HTML when there is a fieldset css class" do
       html = helper.govukRadios({
-                                  classes: "govuk-radios--inline",
-                                  idPrefix: "changed-name",
-                                  name: "changed-name",
-                                  fieldset: {
-                                    classes: "opss-grouping",
-                                    legend: {
-                                      text: "Have you changed your name?",
-                                      isPageHeading: true,
-                                      classes: "govuk-fieldset__legend--l"
-                                    }
-                                  },
-                                  hint: {
-                                    text: "This includes changing your last name or spelling your name differently."
-                                  },
-                                  items: [
-                                    {
-                                      value: "yes",
-                                      text: "Yes"
-                                    },
-                                    {
-                                      value: "no",
-                                      text: "No"
-                                    }
-                                  ]
-                                })
+        classes: "govuk-radios--inline",
+        idPrefix: "changed-name",
+        name: "changed-name",
+        fieldset: {
+          classes: "opss-grouping",
+          legend: {
+            text: "Have you changed your name?",
+            isPageHeading: true,
+            classes: "govuk-fieldset__legend--l"
+          }
+        },
+        hint: {
+          text: "This includes changing your last name or spelling your name differently."
+        },
+        items: [
+          {
+            value: "yes",
+            text: "Yes"
+          },
+          {
+            value: "no",
+            text: "No"
+          }
+        ]
+      })
 
       expect(html).to match_html(<<~HTML)
         <div class="govuk-form-group">
@@ -267,9 +267,6 @@ RSpec.describe GovukDesignSystem::RadiosHelper, type: :helper do
             </fieldset>
           </div>
       HTML
-
     end
-
-
   end
 end
