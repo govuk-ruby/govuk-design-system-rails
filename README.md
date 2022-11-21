@@ -9,17 +9,17 @@ It was originally extracted from Ruby applications built by the Office for Produ
 You **must** include the [govuk-frontend](https://github.com/alphagov/govuk-frontend/) assets (CSS, JS, images, etc.) in your application in order to make use of this library. These assets are not bundled with this gem. This gem aims for parity with a specific version of the `govuk-frontend` library.
 
 | This gem's version | Compatible with `govuk-frontend` version |
-| --- | --- |
-| 0.9.3 | 4.3.1 |
-| 0.9.0 | 4.1.0 |
-| 0.8.2 | 3.14.0 |
+|--------------------| --- |
+| 0.9.7              | 4.3.1 |
+| 0.9.0              | 4.1.0 |
+| 0.8.2              | 3.14.0 |
 
 # Installation
 
 Add the following to your project's Gemfile:
 
 ```ruby
-gem "govuk-design-system-rails", git: "https://github.com/OfficeForProductSafetyAndStandards/govuk-design-system-rails", tag: "0.9.3", require: "govuk_design_system"
+gem "govuk-design-system-rails", git: "https://github.com/OfficeForProductSafetyAndStandards/govuk-design-system-rails", tag: "0.9.7", require: "govuk_design_system"
 ```
 and run `bundle install`
 

@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    govuk-design-system-rails (0.9.6)
+    govuk-design-system-rails (0.9.7)
 
 GEM
   remote: https://rubygems.org/
