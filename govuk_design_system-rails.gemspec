@@ -2,7 +2,7 @@ $LOAD_PATH.push File.expand_path("lib", __dir__)
 
 Gem::Specification.new do |s|
   s.name        = "govuk-design-system-rails"
-  s.version     = "0.9.7"
+  s.version     = "0.9.8"
   s.authors     = %w[OfficeForProductSafetyAndStandards]
   s.summary     = "An implementation of the govuk-frontend macros in Ruby on Rails"
   s.test_files  = Dir["spec/**/*"]

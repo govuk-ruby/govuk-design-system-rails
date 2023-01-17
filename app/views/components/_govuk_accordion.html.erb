@@ -1,0 +1,44 @@
+<%
+  id = local_assigns[:id]
+  heading_level = local_assigns[:headingLevel].presence || 2
+  div_attributes = {
+    id: id,
+    class: class_names("govuk-accordion", local_assigns[:classes]),
+    data: { module: "govuk-accordion" },
+    "data-i18n" => {}
+  }
+  div_attributes["data-i18n"]["hide-all-sections"] = local_assigns[:hideAllSectionsText] if local_assigns[:hideAllSectionsText].present?
+  div_attributes["data-i18n"]["hide-section"] = local_assigns[:hideSectionText] if local_assigns[:hideSectionText].present?
+  div_attributes["data-i18n"]["hide-section-aria-label"] = local_assigns[:hideSectionAriaLabelText] if local_assigns[:hideSectionAriaLabelText].present?
+  div_attributes["data-i18n"]["show-all-sections"] = local_assigns[:showAllSectionsText] if local_assigns[:showAllSectionsText].present?
+  div_attributes["data-i18n"]["show-section"] = local_assigns[:showSectionText] if local_assigns[:showSectionText].present?
+  div_attributes["data-i18n"]["show-section-aria-label"] = local_assigns[:showSectionAriaLabelText] if local_assigns[:showSectionAriaLabelText].present?
+  div_attributes.merge!(local_assigns[:attributes]) if local_assigns[:attributes].present?
+  div_attributes.delete("data-i18n") if div_attributes["data-i18n"] == {}
+%>
+<%= tag.div(**div_attributes) do %>
+  <% local_assigns[:items].each.with_index(1) do |item, index| %>
+    <% next unless item.present? %>
+    <div class="<%= class_names "govuk-accordion__section", { "govuk-accordion__section--expanded" => item[:expanded] } %>">
+      <div class="govuk-accordion__section-header">
+        <h<%= heading_level %> class="govuk-accordion__section-heading">
+          <span class="govuk-accordion__section-button" id="<%= id %>-heading-<%= index %>">
+            <%= item.dig(:heading, :html).presence || item.dig(:heading, :text) %>
+          </span>
+        </h<%= heading_level %>>
+        <% if item.dig(:summary, :html).present? || item.dig(:summary, :text).present? %>
+          <div class="govuk-accordion__section-summary govuk-body" id="<%= id %>-summary-<%= index %>">
+            <%= item.dig(:summary, :html).presence || item.dig(:summary, :text) %>
+          </div>
+        <% end %>
+      </div>
+      <div id="<%= id %>-content-<%= index %>" class="govuk-accordion__section-content" aria-labelledby="<%= id %>-heading-<%= index %>">
+        <% if item.dig(:content, :html).present? %>
+          <%= item.dig(:content, :html) %>
+        <% elsif item.dig(:content, :text).present? %>
+          <p class="govuk-body"><%= item.dig(:content, :text) %></p>
+        <% end %>
+      </div>
+    </div>
+  <% end %>
+<% end %>
