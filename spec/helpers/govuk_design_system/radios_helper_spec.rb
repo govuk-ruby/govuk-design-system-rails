@@ -54,9 +54,8 @@ RSpec.describe GovukDesignSystem::RadiosHelper, type: :helper do
                 </label>
               </div>
             </div>
-
-            </fieldset>
-          </div>
+          </fieldset>
+        </div>
       HTML
     end
 
@@ -263,9 +262,8 @@ RSpec.describe GovukDesignSystem::RadiosHelper, type: :helper do
                 </label>
               </div>
             </div>
-
-            </fieldset>
-          </div>
+          </fieldset>
+        </div>
       HTML
     end
   end
