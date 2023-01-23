@@ -73,7 +73,7 @@ RSpec.describe GovukDesignSystem::CheckboxesHelper, type: :helper do
     end
 
     it "adds ghost inputs by default as required by Rails" do
-      # NOTE: https://github.com/UKGovernmentBEIS/govuk-design-system-rails/README.md#component-implementations
+      # NOTE: https://github.com/govuk-ruby/govuk-design-system-rails/blob/master/README.md#component-implementations
       html = helper.govukCheckboxes({
         idPrefix: "waste",
         name: "waste",
