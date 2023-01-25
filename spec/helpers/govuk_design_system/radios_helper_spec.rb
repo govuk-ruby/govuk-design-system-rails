@@ -215,7 +215,7 @@ RSpec.describe GovukDesignSystem::RadiosHelper, type: :helper do
         idPrefix: "changed-name",
         name: "changed-name",
         fieldset: {
-          classes: "opss-grouping",
+          classes: "app-grouping",
           legend: {
             text: "Have you changed your name?",
             isPageHeading: true,
@@ -239,7 +239,7 @@ RSpec.describe GovukDesignSystem::RadiosHelper, type: :helper do
 
       expect(html).to match_html(<<~HTML)
         <div class="govuk-form-group">
-          <fieldset class="govuk-fieldset opss-grouping" aria-describedby="changed-name-hint">
+          <fieldset class="govuk-fieldset app-grouping" aria-describedby="changed-name-hint">
             <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
               <h1 class="govuk-fieldset__heading">
                 Have you changed your name?
