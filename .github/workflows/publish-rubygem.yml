@@ -1,0 +1,24 @@
+name: Publish gem to RubyGems.org
+
+on:
+  release:
+    types: [published]
+
+jobs:
+  push:
+    name: "Build gem and run gem push"
+    runs-on: ubuntu-latest
+    env:
+      GEM_HOST_API_KEY: ${{ secrets.GEM_HOST_API_KEY }}
+      BUILT_GEM_NAME: "govuk-design-system-rails-${{ github.ref_name }}.gem"
+    steps:
+      - uses: actions/checkout@v3
+      - uses: ruby/setup-ruby@v1
+      - name: Build and push
+        run: |
+          gem build govuk_design_system-rails.gemspec --output $BUILT_GEM_NAME
+          gem push $BUILT_GEM_NAME
+      - uses: actions/upload-artifact@v3
+        with:
+          path: ${{ env.BUILT_GEM_NAME }}
+          retention-days: 7
