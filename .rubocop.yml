@@ -43,6 +43,10 @@ RSpec/ExampleLength:
 RSpec/MultipleMemoizedHelpers:
   Enabled: false
 
+Naming/FileName:
+  Exclude:
+    - lib/govuk-design-system-rails.rb
+
 Naming/MethodName:
   Exclude:
     - 'app/helpers/**/*.rb'
