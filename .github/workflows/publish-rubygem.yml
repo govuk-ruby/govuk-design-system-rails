@@ -20,4 +20,4 @@ jobs:
           gem push $BUILT_GEM_NAME
       - uses: actions/upload-artifact@v3
         with:
-          path: "${{ env.BUILT_GEM_NAME }}"
+          path: ${{ env.BUILT_GEM_NAME }}
