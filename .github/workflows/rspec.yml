@@ -3,32 +3,17 @@ name: RSpec test suite
 on: [push]
 
 env:
+  BUNDLE_JOBS: 4
+  BUNDLE_RETRY: 3
   RAILS_ENV: test
 
 jobs:
-  ruby:
-    name: "Tests"
+  rspec:
+    name: "Run RSpec"
     runs-on: ubuntu-latest
-
     steps:
-    - uses: actions/checkout@v1
-
-    - name: Set up Ruby
-      uses: ruby/setup-ruby@v1
-
-    - uses: actions/cache@v1
-      with:
-        path: vendor/bundle
-        key: ${{ runner.os }}-gems-with-dev-${{ hashFiles('**/Gemfile.lock') }}
-        restore-keys: |
-          ${{ runner.os }}-gems-
-
-    - name: Install RubyGems
-      run: |
-        gem install bundler --no-doc
-        bundle config path vendor/bundle
-        bundle check || bundle install --jobs=4 --retry=3
-
-    - name: Run Specs
-      run: |
-        bundle exec rspec
+      - uses: actions/checkout@v3
+      - uses: ruby/setup-ruby@v1
+        with:
+          bundler-cache: true
+      - run: bundle exec rspec
