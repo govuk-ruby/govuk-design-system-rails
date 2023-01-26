@@ -16,7 +16,7 @@ jobs:
       - uses: ruby/setup-ruby@v1
       - name: Build and push
         run: |
-          gem build govuk_design_system-rails.gemspec --output $BUILT_GEM_NAME
+          gem build govuk-design-system-rails.gemspec --output $BUILT_GEM_NAME
           gem push $BUILT_GEM_NAME
       - uses: actions/upload-artifact@v3
         with:
