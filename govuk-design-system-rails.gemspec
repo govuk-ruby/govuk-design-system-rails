@@ -2,7 +2,7 @@ $LOAD_PATH.push File.expand_path("lib", __dir__)
 
 Gem::Specification.new do |s|
   s.name = "govuk-design-system-rails"
-  s.version = "0.10.0"
+  s.version = "0.10.1"
   s.authors = %w[govuk-ruby]
   s.summary = "An implementation of the govuk-frontend macros in Ruby on Rails"
   s.homepage = "https://github.com/govuk-ruby/govuk-design-system-rails"
@@ -13,6 +13,7 @@ Gem::Specification.new do |s|
     "source_code_uri" => "https://github.com/govuk-ruby/govuk-design-system-rails",
     "wiki_uri" => "https://github.com/govuk-ruby/govuk-design-system-rails/wiki"
   }
+  s.files      = Dir["{app,lib}/**/*"]
   s.test_files = Dir["spec/**/*"]
   s.required_ruby_version = ">= 2.7.0"
 
