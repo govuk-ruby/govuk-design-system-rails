@@ -85,7 +85,7 @@
             { item[:label].try(:[], :classes) =>  item[:label] }
           )
         %>
-        <div class="govuk-radios__item">
+        <div class="govuk-radios__item <%= item[:wrapper_classes]%>">
           <%= tag.input(**input_attributes) %>
           <%=
             govukLabel({
@@ -134,7 +134,14 @@
 
 <%= tag.div(class: form_group_classes) do %>
   <% if local_assigns[:fieldset].present? %>
-    <%= govukFieldset(classes: local_assigns[:fieldset][:classes], describedBy: described_by, legend: local_assigns[:fieldset][:legend], attributes: local_assigns[:fieldset]) { radios_html } %>
+    <%= govukFieldset(classes: local_assigns[:fieldset][:classes], describedBy: described_by, legend: local_assigns[:fieldset][:legend], attributes: local_assigns[:fieldset]) { 
+      extra_html = local_assigns[:extra_html]
+      if extra_html
+        extra_html.html_safe + radios_html
+      else
+        radios_html
+      end
+    } %>
   <% else %>
     <%= radios_html %>
   <% end %>
