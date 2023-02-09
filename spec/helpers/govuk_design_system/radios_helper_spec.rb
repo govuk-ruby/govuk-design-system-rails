@@ -41,13 +41,13 @@ RSpec.describe GovukDesignSystem::RadiosHelper, type: :helper do
               This includes changing your last name or spelling your name differently.
             </div>
             <div class="govuk-radios govuk-radios--inline" data-module="govuk-radios">
-              <div class="govuk-radios__item">
+              <div class="govuk-radios__item ">
                 <input class="govuk-radios__input" id="changed-name-1" name="changed-name" type="radio" value="yes">
                 <label class="govuk-label govuk-radios__label" for="changed-name-1">
                   Yes
                 </label>
               </div>
-              <div class="govuk-radios__item">
+              <div class="govuk-radios__item ">
                 <input class="govuk-radios__input" id="changed-name-2" name="changed-name" type="radio" value="no">
                 <label class="govuk-label govuk-radios__label" for="changed-name-2">
                   No
@@ -105,25 +105,25 @@ RSpec.describe GovukDesignSystem::RadiosHelper, type: :helper do
               <span class="govuk-visually-hidden">Error:</span> Select the country where you live
             </p>
             <div class="govuk-radios" data-module="govuk-radios">
-              <div class="govuk-radios__item">
+              <div class="govuk-radios__item ">
                 <input class="govuk-radios__input" id="where-do-you-live-1" name="where-do-you-live" type="radio" value="england">
                 <label class="govuk-label govuk-radios__label" for="where-do-you-live-1">
                   England
                 </label>
               </div>
-              <div class="govuk-radios__item">
+              <div class="govuk-radios__item ">
                 <input class="govuk-radios__input" id="where-do-you-live-2" name="where-do-you-live" type="radio" value="scotland">
                 <label class="govuk-label govuk-radios__label" for="where-do-you-live-2">
                   Scotland
                 </label>
               </div>
-              <div class="govuk-radios__item">
+              <div class="govuk-radios__item ">
                 <input class="govuk-radios__input" id="where-do-you-live-3" name="where-do-you-live" type="radio" value="wales">
                 <label class="govuk-label govuk-radios__label" for="where-do-you-live-3">
                   Wales
                 </label>
               </div>
-              <div class="govuk-radios__item">
+              <div class="govuk-radios__item ">
                 <input class="govuk-radios__input" id="where-do-you-live-4" name="where-do-you-live" type="radio" value="northern-ireland">
                 <label class="govuk-label govuk-radios__label" for="where-do-you-live-4">
                   Northern Ireland
@@ -249,13 +249,13 @@ RSpec.describe GovukDesignSystem::RadiosHelper, type: :helper do
               This includes changing your last name or spelling your name differently.
             </div>
             <div class="govuk-radios govuk-radios--inline" data-module="govuk-radios">
-              <div class="govuk-radios__item">
+              <div class="govuk-radios__item ">
                 <input class="govuk-radios__input" id="changed-name-1" name="changed-name" type="radio" value="yes">
                 <label class="govuk-label govuk-radios__label" for="changed-name-1">
                   Yes
                 </label>
               </div>
-              <div class="govuk-radios__item">
+              <div class="govuk-radios__item ">
                 <input class="govuk-radios__input" id="changed-name-2" name="changed-name" type="radio" value="no">
                 <label class="govuk-label govuk-radios__label" for="changed-name-2">
                   No
