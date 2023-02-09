@@ -19,6 +19,7 @@ Gem::Specification.new do |s|
 
   s.add_development_dependency "compare-xml"
   s.add_development_dependency "nokogiri"
+  s.add_development_dependency "pry"
   s.add_development_dependency "rails", "~> 6.1.6", ">= 6.1.6.1"
   s.add_development_dependency "rspec-rails"
   s.add_development_dependency "rubocop"

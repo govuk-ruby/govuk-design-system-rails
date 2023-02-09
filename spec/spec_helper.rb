@@ -113,4 +113,31 @@ RSpec::Matchers.define :match_html do |expected_html, **options|
     diff = CompareXML.equivalent?(expected_doc, actual_doc, **options)
     diff.blank?
   end
+  
+  failure_message do |actual_html|
+    expected_doc = Nokogiri::HTML5.fragment(expected_html)
+    actual_doc = Nokogiri::HTML5.fragment(actual_html)
+
+    # Options documented here: https://github.com/vkononov/compare-xml
+    default_options = {
+      collapse_whitespace: true,
+      ignore_attr_order: true,
+      ignore_comments: true
+    }
+
+    options = default_options.merge(options).merge(verbose: true)
+
+    data = CompareXML.equivalent?(expected_doc, actual_doc, **options)
+    
+    buff = []
+    h = data.first
+    buff = []
+    buff << "Expected: "
+    buff << h[:node1].to_html
+    buff << "Got: "
+    buff << h[:node2].to_html
+    buff << "Difference: "
+    buff << h[:diff2]
+    buff.join("\n")
+  end
 end
