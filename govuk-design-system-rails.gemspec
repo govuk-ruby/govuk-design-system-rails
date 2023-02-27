@@ -14,7 +14,7 @@ Gem::Specification.new do |s|
     "source_code_uri" => "https://github.com/govuk-ruby/govuk-design-system-rails",
     "wiki_uri" => "https://github.com/govuk-ruby/govuk-design-system-rails/wiki"
   }
-  s.files      = %w[govuk-design-system-rails.gemspec README.md LICENSE] + Dir["{app,lib}/**/*"]
+  s.files = %w[govuk-design-system-rails.gemspec README.md LICENSE] + Dir["{app,lib}/**/*"]
   s.test_files = Dir["spec/**/*"]
   s.required_ruby_version = ">= 2.7.0"
 
