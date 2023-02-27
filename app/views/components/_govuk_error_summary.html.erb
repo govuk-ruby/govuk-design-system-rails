@@ -7,7 +7,7 @@
   }.merge!(local_assigns[:attributes] || {})
   div_attributes[:data]["disable-auto-focus"] = true if local_assigns[:disableAutoFocus]
 %>
-<%= tag.div **div_attributes do %>
+<%= tag.div(**div_attributes) do %>
   <h2 class="govuk-error-summary__title" id="error-summary-title">
     <%= local_assigns[:titleHtml].presence || local_assigns[:titleText] %>
   </h2>

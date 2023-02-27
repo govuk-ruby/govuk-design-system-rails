@@ -7,24 +7,24 @@
   month_errors = errors.full_messages_for("#{key}_month".to_sym)
   year_errors = errors.full_messages_for("#{key}_year".to_sym)
   local_assigns[:items] = [
-          {
-                  label: "day",
-                  classes: "govuk-input--width-2 #{'govuk-input--error' if day_errors.any? || date_errors.any?}",
-                  value: form.object.send(:get_day, key),
-                  name: "#{get_attribute_name(form, key)}[day]"
-          },
-          {
-                  label: "month",
-                  classes: "govuk-input--width-2 #{'govuk-input--error' if month_errors.any? || date_errors.any?}",
-                  value: form.object.send(:get_month, key),
-                  name: "#{get_attribute_name(form, key)}[month]"
-          },
-          {
-                  label: "year",
-                  classes: "govuk-input--width-4 #{'govuk-input--error' if year_errors.any? || date_errors.any?}",
-                  value: form.object.send(:get_year, key),
-                  name: "#{get_attribute_name(form, key)}[year]"
-          }
+    {
+      label: "day",
+      classes: "govuk-input--width-2 #{'govuk-input--error' if day_errors.any? || date_errors.any?}",
+      value: form.object.send(:get_day, key),
+      name: "#{get_attribute_name(form, key)}[day]"
+    },
+    {
+      label: "month",
+      classes: "govuk-input--width-2 #{'govuk-input--error' if month_errors.any? || date_errors.any?}",
+      value: form.object.send(:get_month, key),
+      name: "#{get_attribute_name(form, key)}[month]"
+    },
+    {
+      label: "year",
+      classes: "govuk-input--width-4 #{'govuk-input--error' if year_errors.any? || date_errors.any?}",
+      value: form.object.send(:get_year, key),
+      name: "#{get_attribute_name(form, key)}[year]"
+    }
   ]
   error_text = errors.full_messages_for(key).first.presence
   local_assigns[:errorMessage] ||= { text: error_text } if error_text

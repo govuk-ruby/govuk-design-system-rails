@@ -9,47 +9,47 @@
 %>
 
 <% text_area_class = class_names(
-    "govuk-textarea",
-    { "govuk-textarea--error" => local_assigns[:errorMessage] },
-    local_assigns[:classes]
-) %>
+     "govuk-textarea",
+     { "govuk-textarea--error" => local_assigns[:errorMessage] },
+     local_assigns[:classes]
+   ) %>
 
 <%= tag.div(class: form_classes) do %>
   <%=
     govukLabel({
-        html: local_assigns[:label][:html],
-        text: local_assigns[:label][:text],
-        classes: local_assigns[:label][:classes],
-        isPageHeading: local_assigns[:label][:isPageHeading],
-        attributes: local_assigns[:label][:attributes],
-        for: local_assigns[:id]
+      html: local_assigns[:label][:html],
+      text: local_assigns[:label][:text],
+      classes: local_assigns[:label][:classes],
+      isPageHeading: local_assigns[:label][:isPageHeading],
+      attributes: local_assigns[:label][:attributes],
+      for: local_assigns[:id]
     })
   %>
 
   <% if local_assigns[:hint] %>
-    <% hintId = local_assigns[:id].to_s + '-hint' %>
-    <% described_by = described_by.blank? ? hintId : described_by + ' ' + hintId %>
+    <% hint_id = "#{local_assigns[:id]}-hint" %>
+    <% described_by = described_by.blank? ? hint_id : "#{described_by} #{hint_id}" %>
     <%= govukHint({
-      id: hintId,
-      classes: local_assigns[:hint][:classes],
-      attributes: local_assigns[:hint][:attributes],
-      html: local_assigns[:hint][:html],
-      text: local_assigns[:hint][:text]
-      }) %>
+          id: hint_id,
+          classes: local_assigns[:hint][:classes],
+          attributes: local_assigns[:hint][:attributes],
+          html: local_assigns[:hint][:html],
+          text: local_assigns[:hint][:text]
+        }) %>
   <% end %>
 
   <% if local_assigns[:errorMessage] %>
-    <% errorId = local_assigns[:id].to_s + '-error' %>
-    <% described_by = described_by.blank? ? errorId : described_by + ' ' + errorId %>
+    <% error_id = "#{local_assigns[:id]}-error" %>
+    <% described_by = described_by.blank? ? error_id : "#{described_by} #{error_id}" %>
     <% attributes = local_assigns[:errorMessage][:attributes] || {} %>
     <%= govukErrorMessage({
-      id: errorId,
-      classes: local_assigns[:errorMessage][:classes],
-      attributes: attributes.merge({id: errorId}),
-      html: local_assigns[:errorMessage][:html],
-      text: local_assigns[:errorMessage][:text],
-      visuallyHiddenText: local_assigns[:errorMessage][:visuallyHiddenText]
-    }) %>
+          id: error_id,
+          classes: local_assigns[:errorMessage][:classes],
+          attributes: attributes.merge({ id: error_id }),
+          html: local_assigns[:errorMessage][:html],
+          text: local_assigns[:errorMessage][:text],
+          visuallyHiddenText: local_assigns[:errorMessage][:visuallyHiddenText]
+        }) %>
   <% end %>
 
   <%
