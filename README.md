@@ -1,5 +1,7 @@
 # GOV.UK Design System
 
+[![Gem Version](https://badge.fury.io/rb/govuk-design-system-rails.svg)](https://rubygems.org/gems/govuk-design-system-rails)
+
 This gem contains a [Rails engine](https://guides.rubyonrails.org/engines.html) containing a Ruby on Rails port of some [GOV.UK Design System](https://design-system.service.gov.uk/) components.
 
 It was originally extracted from Ruby applications built by the Office for Product Safety and Standards (see: https://github.com/UKGovernmentBEIS/beis-opss/pull/1374) and is by no means complete. Not every component is implemented and some components may not behave in exactly the same way as the originals. The project does aim for feature parity and PRs are welcome.
