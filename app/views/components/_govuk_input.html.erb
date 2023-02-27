@@ -3,8 +3,7 @@
     'govuk-form-group',
     { 'govuk-form-group--error' => local_assigns[:errorMessage] },
     local_assigns.dig(:formGroup, :classes)
-  )
-%>
+  ) %>
 <div class="<%= form_group_classes %>">
   <%= render('components/govuk_label',
     html: local_assigns.dig(:label, :html),
@@ -13,8 +12,7 @@
     isPageHeading: local_assigns.dig(:label, :isPageHeading),
     attributes: local_assigns.dig(:label, :attributes),
     for: local_assigns.dig(:id)
-  )
-  %>
+  ) %>
 
   <% if local_assigns[:hint] %>
     <% hint_id = local_assigns[:id] + '-hint' %>
@@ -25,8 +23,7 @@
       attributes: local_assigns.dig(:hint, :attributes),
       html: local_assigns.dig(:hint, :html),
       text: local_assigns.dig(:hint, :text)
-    )
-    %>
+    ) %>
   <% end %>
 
   <% if local_assigns[:errorMessage] %>
@@ -39,8 +36,7 @@
       html: local_assigns.dig(:errorMessage, :html),
       text: local_assigns.dig(:errorMessage, :text),
       visuallyHiddenText: local_assigns.dig(:errorMessage, :visuallyHiddenText)
-    )
-    %>
+    ) %>
   <% end %>
 
   <% if local_assigns[:prefix] || local_assigns[:suffix] %><div class="govuk-input__wrapper"><% end %>
@@ -54,8 +50,7 @@
         'aria-hidden': true
       }
       prefix_attributes.merge!(local_assigns.dig(:prefix, :attributes)) if local_assigns.dig(:prefix, :attributes)
-      prefix_content = local_assigns.dig(:prefix, :html) || local_assigns.dig(:prefix, :text)
-    %>
+      prefix_content = local_assigns.dig(:prefix, :html) || local_assigns.dig(:prefix, :text) %>
     <%= tag.div prefix_content, **prefix_attributes %>
   <% end %>
 
@@ -75,8 +70,7 @@
     input_attributes[:autocomplete] = local_assigns[:autocomplete] if local_assigns[:autocomplete]
     input_attributes[:pattern] = local_assigns[:pattern] if local_assigns[:pattern]
     input_attributes[:inputmode] = local_assigns[:inputmode] if local_assigns[:inputmode]
-    input_attributes.merge!(local_assigns[:attributes]) if local_assigns[:attributes]
-  %>
+    input_attributes.merge!(local_assigns[:attributes]) if local_assigns[:attributes] %>
   <%= tag.input **input_attributes %>
 
   <% if local_assigns.dig(:suffix, :text) || local_assigns.dig(:suffix, :html) %>
@@ -88,8 +82,7 @@
         'aria-hidden': true
       }
       suffix_attributes.merge!(local_assigns.dig(:suffix, :attributes)) if local_assigns.dig(:suffix, :attributes)
-      suffix_content = local_assigns.dig(:suffix, :html) || local_assigns.dig(:suffix, :text)
-    %>
+      suffix_content = local_assigns.dig(:suffix, :html) || local_assigns.dig(:suffix, :text) %>
     <%= tag.div suffix_content, **suffix_attributes %>
   <% end %>
 

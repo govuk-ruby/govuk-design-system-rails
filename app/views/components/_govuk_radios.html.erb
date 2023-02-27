@@ -27,8 +27,7 @@
       "govuk-radios",
       { "govuk-radios--conditional" => is_conditional },
       local_assigns[:classes]
-  )
-  %>
+  ) %>
   <% if local_assigns[:errorMessage] %>
     <%
       error_id = id_prefix + '-error'
