@@ -23,10 +23,10 @@ Gem::Specification.new do |s|
   s.add_development_dependency "nokogiri", "~> 1.14.2"
   s.add_development_dependency "rails", "~> 6.1.6", ">= 6.1.6.1"
   s.add_development_dependency "rspec-rails", "~> 6.0.1"
+  s.add_development_dependency "rubocop", "~> 1.44.1"
   s.add_development_dependency "rubocop-govuk", "~> 4.10.0"
   s.add_development_dependency "rubocop-performance", "~> 1.16.0"
   s.add_development_dependency "rubocop-rspec", "~> 2.18.1"
-  s.add_development_dependency "rubocop", "~> 1.44.1"
   s.add_development_dependency "sqlite3", "~> 1.6.1"
   s.add_development_dependency "super_diff", "~> 0.9.0"
 end
