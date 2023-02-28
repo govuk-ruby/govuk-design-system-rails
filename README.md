@@ -1,6 +1,8 @@
 # GOV.UK Design System
 
 [![Gem Version](https://badge.fury.io/rb/govuk-design-system-rails.svg)](https://rubygems.org/gems/govuk-design-system-rails)
+![RSpec test suite](https://github.com/govuk-ruby/govuk-design-system-rails/workflows/RSpec%20test%20suite/badge.svg?branch=master)
+![Code style](https://github.com/govuk-ruby/govuk-design-system-rails/workflows/Code%20style/badge.svg?branch=master)
 
 This gem contains a [Rails engine](https://guides.rubyonrails.org/engines.html) containing a Ruby on Rails port of some [GOV.UK Design System](https://design-system.service.gov.uk/) components.
 
