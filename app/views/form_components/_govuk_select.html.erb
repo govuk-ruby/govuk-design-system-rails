@@ -10,8 +10,8 @@
   if local_assigns[:selected]
     item_matching_selected = local_assigns[:items].find { |item| item[:value].to_s == local_assigns[:selected] }
     item_matching_selected[:selected] = true if item_matching_selected
-  elsif form.object&.respond_to?(key)
-  # Make item selected based on attribute value
+  elsif form.object.respond_to?(key)
+    # Make item selected based on attribute value
     item_matching_state = local_assigns[:items].find { |item| item[:value].to_s == form.object.send(key).to_s }
     item_matching_state[:selected] = true if item_matching_state
   end

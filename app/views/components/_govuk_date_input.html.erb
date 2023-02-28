@@ -1,17 +1,17 @@
 <%
   described_by = local_assigns[:described_by] || ""
   date_input_items = local_assigns[:items] ||
-          [
-                  { name: "day", classes: "govuk-input--width-2" },
-                  { name: "month", classes: "govuk-input--width-2" },
-                  { name: "year", classes: "govuk-input--width-4" }
-          ]
+    [
+      { name: "day", classes: "govuk-input--width-2" },
+      { name: "month", classes: "govuk-input--width-2" },
+      { name: "year", classes: "govuk-input--width-4" }
+    ]
 %>
 <% date_input = capture do %>
 <% if local_assigns[:hint] %>
   <%
-     hint_id = local_assigns[:id] + '-hint'
-     described_by = described_by.present? ? described_by + ' ' + hint_id : hint_id
+     hint_id = "#{local_assigns[:id]}-hint"
+     described_by = described_by.present? ? "#{described_by} #{hint_id}" : hint_id
   %>
   <%=
     govukHint(
@@ -22,9 +22,9 @@
 <% end %>
 <% if local_assigns[:errorMessage] %>
   <%
-    error_id = local_assigns[:id] + '-error'
+    error_id = "#{local_assigns[:id]}-error"
     described_by = described_by.blank? ? error_id : "#{described_by} #{error_id}"
-    error_attributes  = (local_assigns[:errorMessage][:attributes] || {}).merge(id: error_id)
+    error_attributes = (local_assigns[:errorMessage][:attributes] || {}).merge(id: error_id)
   %>
   <%=
     govukErrorMessage({
@@ -52,7 +52,7 @@
       <div class="govuk-date-input__item">
         <%
           input_mode = item[:inputmode] || "numeric"
-          item_id = item[:id] ? item[:id] : local_assigns[:id] + "-" + item[:name]
+          item_id = item[:id] || "#{local_assigns[:id]}-#{item[:name]}"
           item_classes = class_names("govuk-date-input__input", item[:classes])
           name = local_assigns[:namePrefix] ? "#{local_assigns[:namePrefix]}-#{item[:name]}" : item[:name]
         %>
@@ -76,18 +76,19 @@
 <% end %>
 <%
   form_group_classes = class_names(
-  "govuk-form-group",
-  "govuk-form-group--error" => local_assigns[:errorMessage])
+    "govuk-form-group",
+    "govuk-form-group--error" => local_assigns[:errorMessage]
+  )
 %>
 <%= tag.div(class: form_group_classes) do %>
   <% if local_assigns[:fieldset] %>
     <%= govukFieldset({
-    describedBy: described_by,
-    classes: local_assigns[:fieldset].try(:[], :classes),
-    role: 'group',
-    attributes: local_assigns[:fieldset].try(:[], :attributes),
-    legend: local_assigns[:fieldset].try(:[], :legend)
-  }) { date_input } %>
+          describedBy: described_by,
+          classes: local_assigns[:fieldset].try(:[], :classes),
+          role: "group",
+          attributes: local_assigns[:fieldset].try(:[], :attributes),
+          legend: local_assigns[:fieldset].try(:[], :legend)
+        }) { date_input } %>
   <% else %>
     <%= date_input %>
   <% end %>

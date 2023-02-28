@@ -2,9 +2,9 @@
   # Infer name and id_prefix from attribute key
   local_assigns[:name] ||= get_attribute_name(form, key)
   local_assigns[:idPrefix] ||= get_attribute_id_prefix(form, key)
-  #Give items ids based on rails' convention
+  # Give items ids based on rails' convention
   local_assigns[:items].each do |item|
-    #sanitization taken from https://github.com/rails/rails/
+    # sanitization taken from https://github.com/rails/rails/
     #    blob/7caea98e189c02721b2e944a074c405b033852eb/actionview/lib/action_view/helpers/tags/base.rb#L140
     value = item[:value].to_s.gsub(/\s/, "_").gsub(/[^-[[:word:]]]/, "").mb_chars.downcase.to_s
     item[:id] ||= "#{local_assigns[:idPrefix]}_#{value}"

@@ -18,7 +18,7 @@
 %>
 <%= tag.div(**div_attributes) do %>
   <% local_assigns[:items].each.with_index(1) do |item, index| %>
-    <% next unless item.present? %>
+    <% next if item.blank? %>
     <div class="<%= class_names "govuk-accordion__section", { "govuk-accordion__section--expanded" => item[:expanded] } %>">
       <div class="govuk-accordion__section-header">
         <h<%= heading_level %> class="govuk-accordion__section-heading">

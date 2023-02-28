@@ -28,32 +28,33 @@
       text: local_assigns[:label].try(:[], :text),
       classes: local_assigns[:label].try(:[], :classes),
       attributes: local_assigns[:label].try(:[], :attributes),
-      for: local_assigns[:id])
+      for: local_assigns[:id]
+    )
   %>
 
   <% if local_assigns[:hint] %>
     <%
-      hint_id = local_assigns.try(:[], :name) + '-hint'
-      described_by = described_by.present? ? described_by + ' ' + hint_id : hint_id
+      hint_id = "#{local_assigns.try(:[], :name)}-hint"
+      described_by = described_by.present? ? "#{described_by} #{hint_id}" : hint_id
       hint_classes = class_names(
         "govuk-hint",
         local_assigns[:hint][:classes]
       )
     %>
     <%= govukHint({
-      id: hint_id,
-      classes: hint_classes,
-      attributes: local_assigns[:hint][:attributes],
-      html: local_assigns[:hint][:html],
-      text: local_assigns[:hint][:text]
-      }) %>
+          id: hint_id,
+          classes: hint_classes,
+          attributes: local_assigns[:hint][:attributes],
+          html: local_assigns[:hint][:html],
+          text: local_assigns[:hint][:text]
+        }) %>
   <% end %>
 
   <% if local_assigns[:errorMessage] %>
     <%
-      error_id = local_assigns.try(:[], :name) + '-error'
+      error_id = "#{local_assigns.try(:[], :name)}-error"
       described_by = described_by.blank? ? error_id : "#{described_by} #{error_id}"
-      error_attributes  = (local_assigns[:errorMessage][:attributes] || {}).merge(id: error_id)
+      error_attributes = (local_assigns[:errorMessage][:attributes] || {}).merge(id: error_id)
     %>
     <%=
       govukErrorMessage({
@@ -95,9 +96,11 @@
         </svg>
       </button>
     <% end %>
-    <%= javascript_tag nonce: true do -%>
-      window.callAutocompleteWhenReady("<%= local_assigns[:id] %>", {showAllValues: "<%= local_assigns[:show_all_values] %>"});
-    <% end -%>
+    <script nonce="true">
+      //<![CDATA[
+        window.callAutocompleteWhenReady(<%= local_assigns[:id].to_json %>, { showAllValues: <%= local_assigns[:show_all_values].to_json %> });
+      //]]>
+    </script>
   <% else %>
     <%= select %>
   <% end %>

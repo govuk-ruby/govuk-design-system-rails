@@ -19,6 +19,7 @@ Gem::Specification.new do |s|
   s.required_ruby_version = ">= 2.7.0"
 
   s.add_development_dependency "compare-xml", "~> 0.66"
+  s.add_development_dependency "erb_lint", "~> 0.3.1"
   s.add_development_dependency "nokogiri", "~> 1.14.2"
   s.add_development_dependency "rails", "~> 6.1.6", ">= 6.1.6.1"
   s.add_development_dependency "rspec-rails", "~> 6.0.1"

@@ -16,3 +16,13 @@ jobs:
         with:
           bundler-cache: true
       - run: bundle exec rubocop
+
+  erblint:
+    name: "Run ERB Lint"
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: ruby/setup-ruby@v1
+        with:
+          bundler-cache: true
+      - run: bundle exec erblint --lint-all

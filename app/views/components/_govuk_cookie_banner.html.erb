@@ -9,7 +9,7 @@
   div_attributes[:hidden] = "hidden" if local_assigns[:hidden]
 %>
 <% unless cookies[:seen_cookie_message] %>
-  <%= tag.div **div_attributes do %>
+  <%= tag.div(**div_attributes) do %>
     <% (local_assigns[:messages] || []).each do |message| %>
       <%
         message_attributes = {
@@ -18,7 +18,7 @@
         message_attributes[:hidden] = "hidden" if message[:hidden]
         message_attributes[:role] = message[:role] if message[:role]
       %>
-      <%= tag.div **message_attributes do %>
+      <%= tag.div(**message_attributes) do %>
         <div class="govuk-grid-row">
           <div class="govuk-grid-column-two-thirds">
             <% if message[:headingHtml] || message[:headingText] %>
@@ -42,12 +42,12 @@
               <% if action[:href].present? %>
                 <% if action[:type] == "button" %>
                   <%= govukButton({
-                    "text": action[:text],
-                    "type": "button",
-                    "classes": action[:classes] || [],
-                    "href": action[:href],
-                    "attributes": action[:attributes] || {}
-                  }) %>
+                        "text": action[:text],
+                        "type": "button",
+                        "classes": action[:classes] || [],
+                        "href": action[:href],
+                        "attributes": action[:attributes] || {}
+                      }) %>
                 <% else %>
                   <%
                     link_attributes = {
@@ -58,13 +58,13 @@
                 <% end %>
               <% else %>
                 <%= govukButton({
-                  "text": action[:text],
-                  "value": action[:value],
-                  "name": action[:name],
-                  "type": action[:type],
-                  "classes": action[:classes] || [],
-                  "attributes": action[:attributes] || {}
-                }) %>
+                      "text": action[:text],
+                      "value": action[:value],
+                      "name": action[:name],
+                      "type": action[:type],
+                      "classes": action[:classes] || [],
+                      "attributes": action[:attributes] || {}
+                    }) %>
               <% end %>
             <% end %>
           </div>
