@@ -81,5 +81,56 @@ RSpec.describe GovukDesignSystem::SelectHelper, type: :helper do
         </div>
       HTML
     end
+
+    it "returns the correct HTML when the select element is an autocomplete element" do
+      html = helper.govukSelect({
+        id: "sort",
+        name: "sort",
+        label: {
+          text: "Sort by"
+        },
+        items: [
+          {
+            value: "published",
+            text: "Recently published"
+          },
+          {
+            value: "updated",
+            text: "Recently updated",
+            selected: true
+          },
+          {
+            value: "views",
+            text: "Most views"
+          },
+          {
+            value: "comments",
+            text: "Most comments"
+          }
+        ],
+        is_autocomplete: true
+      })
+
+      expect(html).to match_html(<<~HTML)
+        <div class="govuk-form-group">
+          <label class="govuk-label" for="sort">
+            Sort by
+          </label>
+          <div class="">
+            <select class="govuk-select" id="sort" name="sort">
+              <option value="published">Recently published</option>
+              <option value="updated" selected="selected">Recently updated</option>
+              <option value="views">Most views</option>
+              <option value="comments">Most comments</option>
+            </select>
+          </div>
+            <script nonce="true">
+            // <![CDATA[
+              window.callAutocompleteWhenReady("sort", { showAllValues: null });
+            // ]]>
+          </script>
+        </div>
+      HTML
+    end
   end
 end
