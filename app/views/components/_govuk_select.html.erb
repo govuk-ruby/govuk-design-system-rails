@@ -96,10 +96,11 @@
         </svg>
       </button>
     <% end %>
+
     <script nonce="true">
-      //<![CDATA[
-        window.callAutocompleteWhenReady(<%= local_assigns[:id].to_json %>, { showAllValues: <%= local_assigns[:show_all_values].to_json %> });
-      //]]>
+      // <![CDATA[
+        window.callAutocompleteWhenReady(<%= local_assigns[:id].to_json.html_safe %>, { showAllValues: <%= local_assigns[:show_all_values].to_json.html_safe %> });
+      // ]]>
     </script>
   <% else %>
     <%= select %>
