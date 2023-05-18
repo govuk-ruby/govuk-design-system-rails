@@ -1,3 +1,5 @@
+> **NOTE: This gem has been deprecated. Please consider using https://github.com/DFE-Digital/govuk-components and https://github.com/DFE-Digital/govuk-formbuilder instead.**
+
 # GOV.UK Design System
 
 [![Gem Version](https://badge.fury.io/rb/govuk-design-system-rails.svg)](https://rubygems.org/gems/govuk-design-system-rails)
