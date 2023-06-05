@@ -1,4 +1,4 @@
-name: Publish gem to RubyGems.org
+name: Yank gem from RubyGems.org
 
 on:
   release:
@@ -6,7 +6,7 @@ on:
 
 jobs:
   push:
-    name: "Build gem and run gem push"
+    name: "Run gem yank"
     runs-on: ubuntu-latest
     env:
       GEM_HOST_API_KEY: ${{ secrets.GEM_HOST_API_KEY }}
@@ -14,10 +14,8 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - uses: ruby/setup-ruby@v1
-      - name: Build and push
+      - name: Yank
         run: |
-          gem build govuk-design-system-rails.gemspec --output $BUILT_GEM_NAME
-          gem push $BUILT_GEM_NAME
-      - uses: actions/upload-artifact@v3
-        with:
-          path: ${{ env.BUILT_GEM_NAME }}
+          gem yank govuk-design-system-rails -v 0.10.1
+          gem yank govuk-design-system-rails -v 0.10.2
+          gem yank govuk-design-system-rails -v 0.10.3
